@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Zen — Programming Language</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#1e1f29;
+  --bg-panel:#16171f;
+  --bg-surface:#252636;
+  --border:#383952;
+  --text:#f8f8f2;
+  --text-muted:#6272a4;
+  --kw:#ff79c6;
+  --fn:#50fa7b;
+  --str:#f1fa8c;
+  --num:#bd93f9;
+  --comment:#6272a4;
+  --type:#8be9fd;
+  --punct:#ff5555;
+  --accent:#bd93f9;
+}
+
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Syne',sans-serif;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* Custom cursor */
+#cursor{
+  position:fixed;width:10px;height:10px;
+  background:var(--kw);border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:transform 0.1s,background 0.2s;
+  mix-blend-mode:screen;
+}
+#cursor-ring{
+  position:fixed;width:36px;height:36px;
+  border:1px solid var(--accent);border-radius:50%;
+  pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);
+  transition:transform 0.15s ease,width 0.2s,height 0.2s,opacity 0.2s;
+  opacity:0.5;
+}
+
+/* Canvas bg */
+#canvas-bg{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  z-index:0;pointer-events:none;
+}
+
+/* Nav */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:20px 60px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid transparent;
+  transition:all 0.3s;
+}
+nav.scrolled{
+  background:rgba(22,23,31,0.85);
+  backdrop-filter:blur(20px);
+  border-color:var(--border);
+}
+.nav-logo{
+  display:flex;align-items:center;gap:12px;
+  font-size:22px;font-weight:800;letter-spacing:-0.5px;
+  color:var(--text);text-decoration:none;
+}
+.nav-logo .z-mark{
+  width:36px;height:36px;
+  display:flex;align-items:center;justify-content:center;
+}
+.nav-logo .z-mark svg polyline{
+  stroke:url(#navGrad);
+}
+.nav-links{display:flex;gap:36px;align-items:center}
+.nav-links a{
+  color:var(--text-muted);text-decoration:none;
+  font-size:14px;font-weight:500;letter-spacing:0.5px;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{
+  padding:8px 20px;
+  border:1px solid var(--accent);
+  color:var(--accent) !important;
+  border-radius:6px;
+  transition:background 0.2s,color 0.2s !important;
+}
+.nav-cta:hover{background:var(--accent);color:var(--bg) !important}
+
+/* Hero */
+#hero{
+  position:relative;z-index:1;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:120px 40px 80px;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 16px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  font-size:12px;font-family:'JetBrains Mono',monospace;
+  color:var(--text-muted);margin-bottom:40px;
+  background:var(--bg-surface);
+  animation:fadeUp 0.8s ease both;
+}
+.hero-badge .dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--fn);
+  box-shadow:0 0 8px var(--fn);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+
+.hero-title{
+  font-size:clamp(64px,10vw,130px);
+  font-weight:800;line-height:1;
+  letter-spacing:-4px;
+  animation:fadeUp 0.8s 0.1s ease both;
+  position:relative;
+}
+.hero-title .t1{color:var(--text)}
+.hero-title .t2{
+  background:linear-gradient(135deg,var(--kw),var(--accent),var(--type));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  display:block;
+}
+.hero-sub{
+  font-size:clamp(15px,2vw,19px);
+  color:var(--text-muted);
+  max-width:560px;
+  line-height:1.7;
+  margin:32px auto 0;
+  font-family:'JetBrains Mono',monospace;
+  font-weight:300;
+  animation:fadeUp 0.8s 0.2s ease both;
+}
+.hero-sub span{color:var(--kw)}
+
+.hero-actions{
+  display:flex;gap:16px;margin-top:48px;
+  flex-wrap:wrap;justify-content:center;
+  animation:fadeUp 0.8s 0.3s ease both;
+}
+.btn-primary{
+  padding:14px 32px;
+  background:linear-gradient(135deg,var(--kw),var(--accent));
+  color:var(--bg);font-weight:700;font-size:14px;
+  border:none;border-radius:8px;cursor:none;
+  text-decoration:none;letter-spacing:0.5px;
+  transition:transform 0.2s,box-shadow 0.2s;
+  box-shadow:0 0 30px rgba(189,147,249,0.3);
+}
+.btn-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 50px rgba(189,147,249,0.5);
+}
+.btn-secondary{
+  padding:14px 32px;
+  background:transparent;
+  color:var(--text);font-weight:600;font-size:14px;
+  border:1px solid var(--border);border-radius:8px;cursor:none;
+  text-decoration:none;letter-spacing:0.5px;
+  transition:border-color 0.2s,background 0.2s;
+  font-family:'JetBrains Mono',monospace;
+}
+.btn-secondary:hover{border-color:var(--accent);background:rgba(189,147,249,0.05)}
+
+.hero-stats{
+  display:flex;gap:60px;margin-top:80px;
+  animation:fadeUp 0.8s 0.4s ease both;
+}
+.stat{text-align:center}
+.stat-num{
+  font-size:32px;font-weight:800;
+  background:linear-gradient(135deg,var(--kw),var(--accent));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.stat-label{font-size:15px;color:var(--text-muted);margin-top:4px;font-family:'JetBrains Mono',monospace}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* Scroll indicator */
+.scroll-hint{
+  position:absolute;bottom:40px;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:var(--text-muted);font-size:11px;font-family:'JetBrains Mono',monospace;
+  animation:fadeUp 1s 0.8s ease both;
+}
+.scroll-line{
+  width:1px;height:50px;
+  background:linear-gradient(to bottom,var(--accent),transparent);
+  animation:scrollLine 2s infinite;
+}
+@keyframes scrollLine{
+  0%{transform:scaleY(0);transform-origin:top}
+  50%{transform:scaleY(1);transform-origin:top}
+  51%{transform:scaleY(1);transform-origin:bottom}
+  100%{transform:scaleY(0);transform-origin:bottom}
+}
+
+/* Code showcase */
+#code-section{
+  position:relative;z-index:1;
+  padding:120px 60px;
+  max-width:1200px;margin:0 auto;
+}
+.section-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;color:var(--kw);letter-spacing:3px;
+  text-transform:uppercase;margin-bottom:16px;
+}
+.section-title{
+  font-size:clamp(32px,5vw,56px);
+  font-weight:800;line-height:1.1;letter-spacing:-2px;
+  margin-bottom:60px;
+}
+.section-title em{font-style:normal;color:var(--accent)}
+
+.code-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:24px;
+}
+.code-card{
+  background:var(--bg-panel);
+  border:1px solid var(--border);
+  border-radius:16px;overflow:hidden;
+  transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;
+}
+.code-card:hover{
+  border-color:var(--accent);
+  transform:translateY(-4px);
+  box-shadow:0 20px 60px rgba(189,147,249,0.1);
+}
+.code-card-header{
+  padding:16px 20px;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.code-card-title{font-size:13px;font-weight:600;color:var(--text-muted)}
+.code-card-tag{
+  font-size:10px;font-family:'JetBrains Mono',monospace;
+  padding:3px 8px;border-radius:4px;
+  background:rgba(189,147,249,0.1);color:var(--accent);
+}
+.code-card pre{
+  padding:24px 20px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;line-height:1.8;overflow-x:auto;
+}
+.kw{color:var(--kw)}
+.fn{color:var(--fn)}
+.str{color:var(--str)}
+.num{color:var(--num)}
+.cm{color:var(--comment)}
+.ty{color:var(--type)}
+.op{color:var(--kw);opacity:0.8}
+
+/* Features */
+#features{
+  position:relative;z-index:1;
+  padding:120px 60px;
+  max-width:1200px;margin:0 auto;
+}
+.features-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+  margin-top:60px;
+}
+.feature-card{
+  padding:32px;
+  background:var(--bg-panel);
+  border:1px solid var(--border);
+  border-radius:16px;
+  transition:border-color 0.3s,transform 0.3s;
+  position:relative;overflow:hidden;
+}
+.feature-card::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  opacity:0;transition:opacity 0.3s;
+}
+.feature-card:hover{border-color:var(--border-soft);transform:translateY(-4px)}
+.feature-card:hover::before{opacity:1}
+.feature-icon{
+  font-size:28px;margin-bottom:20px;
+  filter:drop-shadow(0 0 10px currentColor);
+}
+.feature-title{font-size:17px;font-weight:700;margin-bottom:10px}
+.feature-desc{font-size:14px;color:var(--text-muted);line-height:1.7}
+.feature-tag{
+  display:inline-block;margin-top:16px;
+  font-size:10px;font-family:'JetBrains Mono',monospace;
+  padding:3px 8px;border-radius:4px;
+  background:rgba(80,250,123,0.08);color:var(--fn);
+}
+
+/* Philosophy strip */
+#philosophy{
+  position:relative;z-index:1;
+  padding:100px 60px;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  overflow:hidden;
+}
+.philosophy-inner{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.philosophy-quote{
+  font-size:clamp(22px,3vw,36px);
+  font-weight:700;line-height:1.4;
+  letter-spacing:-1px;
+}
+.philosophy-quote span{color:var(--kw)}
+.philosophy-list{display:flex;flex-direction:column;gap:20px}
+.philosophy-item{
+  display:flex;gap:16px;align-items:flex-start;
+  padding:20px;background:var(--bg-surface);
+  border-radius:12px;border:1px solid var(--border);
+}
+.philosophy-item .pi-icon{
+  width:32px;height:32px;border-radius:8px;
+  background:rgba(189,147,249,0.1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;flex-shrink:0;
+}
+.pi-title{font-size:14px;font-weight:600;margin-bottom:4px}
+.pi-desc{font-size:13px;color:var(--text-muted);line-height:1.6}
+
+/* Install section */
+#install{
+  position:relative;z-index:1;
+  padding:120px 60px;
+  max-width:1200px;margin:0 auto;
+  text-align:center;
+}
+.install-box{
+  display:inline-flex;align-items:center;gap:16px;
+  width: 100%;
+  text-wrap: wrap;
+  padding:12px 24px;
+  background:var(--bg-panel);
+  border:1px solid var(--border);
+  border-radius:12px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:16px;margin-top:40px;
+  transition:border-color 0.3s;cursor:none;
+  box-sizing: border-box;
+}
+.install-box:hover{border-color:var(--accent)}
+.install-box .prompt{color:var(--fn)}
+.install-box .cmd{color:var(--text)}
+.copy-btn{
+  padding:6px 12px;
+  background:rgba(189,147,249,0.1);
+  border:1px solid var(--border);
+  border-radius:6px;color:var(--accent);
+  font-size:11px;cursor:none;
+  font-family:'JetBrains Mono',monospace;
+  transition:background 0.2s;
+}
+.copy-btn:hover{background:rgba(189,147,249,0.2)}
+.install-note{
+  margin-top:20px;font-size:13px;
+  color:var(--text-muted);font-family:'JetBrains Mono',monospace;
+}
+
+/* Benchmark */
+#benchmark{
+  position:relative;z-index:1;
+  padding:120px 60px;
+  max-width:1200px;margin:0 auto;
+}
+.bench-grid{
+  display:flex;flex-direction:column;gap:12px;margin-top:60px;
+}
+.bench-row{
+  display:grid;grid-template-columns:100px 1fr 80px;
+  gap:16px;align-items:center;
+}
+.bench-lang{
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;color:var(--text-muted);text-align:right;
+}
+.bench-bar-wrap{
+  height:36px;background:var(--bg-surface);
+  border-radius:6px;overflow:hidden;
+  border:1px solid var(--border);
+}
+.bench-bar{
+  height:100%;border-radius:6px;
+  display:flex;align-items:center;padding-left:12px;
+  font-size:11px;font-family:'JetBrains Mono',monospace;
+  transition:width 1.5s cubic-bezier(0.16,1,0.3,1);
+  width:0;
+}
+.bench-val{
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;color:var(--text-muted);
+}
+.zen-bar{background:linear-gradient(90deg,var(--kw),var(--accent));color:var(--bg);font-weight:700}
+.c-bar{background:rgba(80,250,123,0.3);color:var(--fn)}
+.cpp-bar{background:rgba(80,250,123,0.2);color:var(--fn)}
+.go-bar{background:rgba(139,233,253,0.2);color:var(--type)}
+.rust-bar{background:rgba(255,121,198,0.15);color:var(--kw)}
+.js-bar{background:rgba(241,250,140,0.15);color:var(--str)}
+.py-bar{background:rgba(189,147,249,0.1);color:var(--accent)}
+.bench-note{font-size:12px;color:var(--text-muted);font-family:'JetBrains Mono',monospace;margin-top:20px}
+
+/* Footer */
+footer{
+  position:relative;z-index:1;
+  border-top:1px solid var(--border);
+  padding:60px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:24px;
+}
+.footer-brand{
+  font-size:20px;font-weight:800;letter-spacing:-0.5px;
+}
+.footer-brand span{color:var(--accent)}
+.footer-links{display:flex;gap:28px}
+.footer-links a{
+  color:var(--text-muted);text-decoration:none;
+  font-size:13px;transition:color 0.2s;
+  font-family:'JetBrains Mono',monospace;
+}
+.footer-links a:hover{color:var(--text)}
+.footer-copy{
+  font-size:12px;color:var(--text-muted);
+  font-family:'JetBrains Mono',monospace;
+}
+
+/* Floating glow orbs */
+.orb{
+  position:fixed;border-radius:50%;
+  pointer-events:none;z-index:0;
+  filter:blur(80px);opacity:0.12;
+}
+.orb1{width:500px;height:500px;background:var(--kw);top:-100px;right:-100px}
+.orb2{width:400px;height:400px;background:var(--accent);bottom:10%;left:-100px}
+.orb3{width:300px;height:300px;background:var(--type);top:50%;right:10%}
+
+/* Scroll reveal */
+.reveal{
+  opacity:0;transform:translateY(40px);
+  transition:opacity 0.8s ease,transform 0.8s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){
+  nav{padding:16px 24px}
+  .nav-links{display:none}
+  #code-section,#features,#install,#benchmark,#philosophy{padding:60px 20px}
+  .code-grid,.features-grid{grid-template-columns:1fr}
+  .philosophy-inner{grid-template-columns:1fr;gap:40px}
+  .hero-stats{gap:20px;flex-wrap:wrap;justify-content:center}
+  .stat-num{font-size:25px}
+  footer{padding:40px 24px;flex-direction:column}
+
+  #hero{padding:100px 24px 60px}
+  .hero-title{
+    font-size:48px;
+    letter-spacing:-2px;
+  }
+  .hero-sub{font-size:14px}
+  .hero-actions{flex-direction:column;align-items:center}
+  .btn-primary,.btn-secondary{width:100%;max-width:300px;text-align:center}
+
+  .section-title{font-size:32px;letter-spacing:-1px}
+  .philosophy-quote{font-size:24px}
+
+  .bench-row{grid-template-columns:70px 1fr 50px}
+  .bench-lang{font-size:11px}
+  .bench-val{font-size:11px}
+
+  .install-box{flex-wrap:wrap;justify-content:center;font-size:14px}
+
+  /* hide custom cursor on touch */
+  #cursor,#cursor-ring{display:none}
+  body{cursor:auto}
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<canvas id="canvas-bg"></canvas>
+
+<!-- Nav -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="z-mark">
+      <svg viewBox="0 0 36 36" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="navGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff79c6"/>
+            <stop offset="100%" stop-color="#bd93f9"/>
+          </linearGradient>
+        </defs>
+        <polyline points="8,8 28,8 8,28 28,28" fill="none" stroke="url(#navGrad)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    ZEN
+  </a>
+  <div class="nav-links">
+    <a href="#code-section">Syntax</a>
+    <a href="#features">Features</a>
+    <a href="#benchmark">Benchmark</a>
+    <a href="#install">Install</a>
+    <a href="#" class="nav-cta">Docs →</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section id="hero">
+  <div class="hero-badge">
+    <span class="dot"></span>
+    v1.0.0 — Stable Release
+  </div>
+  <h1 class="hero-title">
+    <span class="t1">The Language</span>
+    <span class="t2">Built for Precision</span>
+  </h1>
+  <p class="hero-sub">
+    Statically compiled. LLVM-powered.<br/>
+    <span>Every construct. Deterministic.</span> No surprises.
+  </p>
+  <div class="hero-actions">
+    <a href="#install" class="btn-primary">Get Started</a>
+    <a href="#code-section" class="btn-secondary">$ zen run hello.zen</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">LLVM</div>
+      <div class="stat-label">Backend</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">102</div>
+      <div class="stat-label">Stdlib APIs</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5</div>
+      <div class="stat-label">Loop Forms</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">v1.0</div>
+      <div class="stat-label">Feature Complete</div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    scroll
+  </div>
+</section>
+
+<!-- Code Section -->
+<section id="code-section">
+  <div class="reveal">
+    <div class="section-label">// syntax</div>
+    <h2 class="section-title">Clean. Precise.<br/><em>Unambiguous.</em></h2>
+  </div>
+  <div class="code-grid reveal">
+    <div class="code-card">
+      <div class="code-card-header">
+        <span class="code-card-title">Types & Variables</span>
+        <span class="code-card-tag">static typing</span>
+      </div>
+      <pre><code><span class="cm"># primitive types</span>
+<span class="ty">int</span>    x = <span class="num">42</span>
+<span class="ty">double</span> pi = <span class="num">3.14</span>
+<span class="ty">string</span> name = <span class="str">"zen"</span>
+<span class="ty">bool</span>   flag = <span class="kw">true</span>
+
+<span class="cm"># type inference</span>
+<span class="kw">auto</span> result = x * <span class="num">2</span>
+
+<span class="cm"># constants</span>
+<span class="kw">int</span> <span class="ty">const</span> MAX = <span class="num">1000</span>
+
+<span class="cm"># reactive (re-evaluates on change)</span>
+<span class="kw">reactive</span> <span class="ty">string</span> msg = <span class="str">`val: <span class="kw">${</span>x<span class="kw">}</span>`</span></code></pre>
+    </div>
+    <div class="code-card">
+      <div class="code-card-header">
+        <span class="code-card-title">Functions</span>
+        <span class="code-card-tag">first-class</span>
+      </div>
+      <pre><code><span class="cm"># typed function</span>
+<span class="kw">fn</span> <span class="fn">add</span>(<span class="ty">int</span> a, <span class="ty">int</span> b) <span class="ty">int</span> {
+  <span class="kw">return</span> a + b
+}
+
+<span class="cm"># auto return type</span>
+<span class="kw">fn</span> <span class="fn">greet</span>(<span class="ty">string</span> name) <span class="kw">auto</span> {
+  <span class="kw">return</span> <span class="str">`Hello, <span class="kw">${</span>name<span class="kw">}</span>!`</span>
+}
+
+<span class="cm"># rest parameters</span>
+<span class="kw">fn</span> <span class="fn">sum</span>(<span class="ty">int</span> vals...) <span class="ty">List</span>&lt;<span class="ty">int</span>&gt; {
+  <span class="kw">return</span> vals
+}</code></pre>
+    </div>
+    <div class="code-card">
+      <div class="code-card-header">
+        <span class="code-card-title">Control Flow</span>
+        <span class="code-card-tag">5 loop forms</span>
+      </div>
+      <pre><code><span class="cm"># c-style loop</span>
+<span class="kw">loop</span> (<span class="ty">int</span> i = <span class="num">0</span>; i &lt; <span class="num">10</span>; i++) {
+  <span class="fn">screen</span>(i)
+}
+
+<span class="cm"># while</span>
+<span class="kw">while</span> (x &gt; <span class="num">0</span>) { x-- }
+
+<span class="cm"># do while</span>
+<span class="kw">do</span> {
+  <span class="fn">screen</span>(x)
+} <span class="kw">while</span> (x &gt; <span class="num">0</span>)
+
+<span class="cm"># iterate List or fixed size arrays kr rest params</span>
+<span class="kw">loop</span> (n <span class="kw">of</span> nums) {
+  <span class="fn">screen</span>(n)
+}
+
+<span class="cm"># iterate map</span>
+<span class="kw">loop</span> (k <span class="kw">in</span> person) {
+  <span class="fn">screen</span>(k)
+}</code></pre>
+    </div>
+    <div class="code-card">
+      <div class="code-card-header">
+        <span class="code-card-title">Maps & Lists</span>
+        <span class="code-card-tag">built-in types</span>
+      </div>
+      <pre><code><span class="cm"># typed list</span>
+<span class="ty">List</span>&lt;<span class="ty">int</span>&gt; nums = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]
+nums.<span class="fn">push</span>(<span class="num">4</span>)
+<span class="ty">int</span> len = nums.length
+
+<span class="cm"># map</span>
+<span class="ty">Map</span> person = {
+  name: <span class="str">"Achu"</span>,
+  age: <span class="num">25</span>
+}
+
+<span class="ty">bool</span> has = person.<span class="fn">has</span>(<span class="str">"name"</span>)
+person.<span class="fn">remove</span>(<span class="str">"age"</span>)</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section id="features">
+  <div class="reveal">
+    <div class="section-label">// features</div>
+    <h2 class="section-title">Designed with<br/><em>Intent.</em></h2>
+  </div>
+  <div class="features-grid reveal">
+    <div class="feature-card">
+      <div class="feature-icon" style="color:var(--kw)">⚡</div>
+      <div class="feature-title">LLVM Backend</div>
+      <div class="feature-desc">Compiles directly to LLVM IR, giving you native performance with access to decades of compiler optimization work.</div>
+      <span class="feature-tag">native binary</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="color:var(--type)">🔒</div>
+      <div class="feature-title">Compile-Time First</div>
+      <div class="feature-desc">Type resolution, semantic checks, and error detection happen at compile time. Bounds and key access are caught at runtime with precise error messages.</div>
+      <span class="feature-tag">no silent failures</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="color:var(--fn)">🧩</div>
+      <div class="feature-title">Module System</div>
+      <div class="feature-desc">Clean export/import model with strict ordering rules. No circular dependencies, no ambiguous resolution.</div>
+      <span class="feature-tag">explicit exports</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="color:var(--str)">📦</div>
+      <div class="feature-title">102 Stdlib APIs</div>
+      <div class="feature-desc">Math, strings, I/O, HTTP, time, regex, JSON path navigation, terminal colors — batteries included.</div>
+      <span class="feature-tag">stdlib v1</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="color:var(--accent)">🔁</div>
+      <div class="feature-title">Reactive Variables</div>
+      <div class="feature-desc">Declare variables that automatically re-evaluate when their dependencies change. First-class language feature.</div>
+      <span class="feature-tag">reactive keyword</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="color:var(--punct)">⚙️</div>
+      <div class="feature-title">Self-Hosting in Progress</div>
+      <div class="feature-desc">The Zen lexer is already written in Zen itself. Full compiler bootstrap is underway.</div>
+      <span class="feature-tag">bootstrapping</span>
+    </div>
+  </div>
+</section>
+
+<!-- Philosophy -->
+<section id="philosophy">
+  <div class="philosophy-inner">
+    <div class="reveal">
+      <div class="section-label">// philosophy</div>
+      <div class="philosophy-quote">
+        If it cannot be<br/>
+        <span>precisely defined,</span><br/>
+        it does not exist<br/>
+        in the language.
+      </div>
+    </div>
+    <div class="philosophy-list reveal">
+      <div class="philosophy-item">
+        <div class="pi-icon">∅</div>
+        <div>
+          <div class="pi-title">No implicit coercions</div>
+          <div class="pi-desc">Types never silently convert. What you write is what the compiler sees.</div>
+        </div>
+      </div>
+      <div class="philosophy-item">
+        <div class="pi-icon">⊢</div>
+        <div>
+          <div class="pi-title">No hidden transformations</div>
+          <div class="pi-desc">No magic behind the scenes. Every operation has a deterministic IR output.</div>
+        </div>
+      </div>
+      <div class="philosophy-item">
+        <div class="pi-icon">✓</div>
+        <div>
+          <div class="pi-title">Programmer and compiler agree</div>
+          <div class="pi-desc">The spec is the truth. Behavior is never undocumented or implementation-defined.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Performance -->
+<section id="benchmark">
+  <div class="reveal">
+    <div class="section-label">// performance</div>
+    <h2 class="section-title">Native speed.<br/><em>Minimal runtime.</em></h2>
+  </div>
+  <div class="features-grid reveal" style="margin-top:60px">
+    <div class="feature-card">
+      <div class="feature-icon" style="color:var(--kw)">🎯</div>
+      <div class="feature-title">Compiles to Native Binary</div>
+      <div class="feature-desc">Zen emits LLVM IR and compiles to a native binary. No VM, no interpreter, no JIT warmup.</div>
+      <span class="feature-tag">Minimal overhead</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="color:var(--fn)">📦</div>
+      <div class="feature-title">No Garbage Collector</div>
+      <div class="feature-desc">Memory is managed explicitly with <code style="color:var(--kw)">free()</code>. Predictable performance, no GC pauses.</div>
+      <span class="feature-tag">manual memory</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="color:var(--type)">⚙️</div>
+      <div class="feature-title">LLVM Optimizations</div>
+      <div class="feature-desc">Leverages the full LLVM optimization pipeline — inlining, dead code elimination, and target-specific codegen.</div>
+      <span class="feature-tag">llvm backend</span>
+    </div>
+  </div>
+</section>
+
+<!-- Install -->
+<section id="install">
+  <div class="reveal">
+    <div class="section-label">// get started</div>
+    <h2 class="section-title">Ship your first<br/><em>Zen program.</em></h2>
+  </div>
+  <div class="reveal">
+    <div class="install-box" onclick="copyInstall()">
+      <span class="prompt">$</span>
+      <span class="cmd" id="install-cmd">curl -fsSL https://raw.githubusercontent.com/
+        jishith-dev/Zen/main/install.sh | bash</span>
+      <button class="copy-btn" id="copy-btn">copy</button>
+    </div>
+    <p class="install-note">// then: zen run hello.zen</p>
+  </div>
+  <div style="margin-top:60px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap" class="reveal">
+    <a href="./site/index.html" class="btn-primary">Read the Docs</a>
+    <a href="https://github.com/Jishith-dev/Zen" class="btn-secondary">GitHub →</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-brand">ZEN<span>.</span></div>
+  <div class="footer-links">
+    <a href="./site/index.html">Docs</a>
+    <a href="https://github.com/Jishith-dev/Zen">GitHub</a>
+    <a href="./site/changelog/index.html">Changelog</a>
+  </div>
+  <div class="footer-copy">// built in the open · v1.0.0</div>
+</footer>
+
+<script>
+// Cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cursor.style.left=mx+'px';cursor.style.top=my+'px';
+});
+function animRing(){
+  rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+document.querySelectorAll('a,button,.install-box').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{
+    ring.style.width='60px';ring.style.height='60px';
+    ring.style.opacity='0.8';
+  });
+  el.addEventListener('mouseleave',()=>{
+    ring.style.width='36px';ring.style.height='36px';
+    ring.style.opacity='0.5';
+  });
+});
+
+// Canvas background - grid + particles
+const canvas = document.getElementById('canvas-bg');
+const ctx = canvas.getContext('2d');
+let W,H,particles=[];
+
+function resize(){
+  W=canvas.width=window.innerWidth;
+  H=canvas.height=window.innerHeight;
+}
+resize();
+window.addEventListener('resize',resize);
+
+// Particles
+for(let i=0;i<60;i++){
+  particles.push({
+    x:Math.random()*2000,y:Math.random()*2000,
+    vx:(Math.random()-0.5)*0.3,vy:(Math.random()-0.5)*0.3,
+    r:Math.random()*1.5+0.5,
+    color:['#ff79c6','#bd93f9','#8be9fd','#50fa7b'][Math.floor(Math.random()*4)],
+    alpha:Math.random()*0.4+0.1
+  });
+}
+
+function drawGrid(){
+  ctx.strokeStyle='rgba(56,57,82,0.4)';
+  ctx.lineWidth=0.5;
+  const sz=60;
+  for(let x=0;x<W;x+=sz){
+    ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();
+  }
+  for(let y=0;y<H;y+=sz){
+    ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();
+  }
+}
+
+function tick(){
+  ctx.clearRect(0,0,W,H);
+  drawGrid();
+  particles.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0)p.x=W;if(p.x>W)p.x=0;
+    if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=p.color;
+    ctx.globalAlpha=p.alpha;
+    ctx.fill();
+    ctx.globalAlpha=1;
+  });
+  // Connect nearby particles
+  particles.forEach((a,i)=>{
+    particles.slice(i+1).forEach(b=>{
+      const d=Math.hypot(a.x-b.x,a.y-b.y);
+      if(d<120){
+        ctx.beginPath();
+        ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);
+        ctx.strokeStyle=`rgba(189,147,249,${0.08*(1-d/120)})`;
+        ctx.lineWidth=0.5;ctx.stroke();
+      }
+    });
+  });
+  requestAnimationFrame(tick);
+}
+tick();
+
+// Nav scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',scrollY>50);
+});
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      // Animate bench bars
+      e.target.querySelectorAll('.bench-bar').forEach(bar=>{
+        bar.style.width=bar.dataset.width+'%';
+      });
+    }
+  });
+},{threshold:0.15});
+reveals.forEach(r=>observer.observe(r));
+
+// Copy install
+function copyInstall(){
+  navigator.clipboard.writeText('curl -fsSL https://raw.githubusercontent.com/jishith-dev/Zen/main/install.sh | bash');
+  const btn=document.getElementById('copy-btn');
+  btn.textContent='copied!';
+  setTimeout(()=>btn.textContent='copy',2000);
+}
+</script>
+</body>
+</html>
