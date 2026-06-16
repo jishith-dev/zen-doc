@@ -432,10 +432,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#v100-initial-release" class="md-nav__link">
+  <a href="#v101" class="md-nav__link">
     <span class="md-ellipsis">
       
-        v1.0.0 (Initial Release)
+        v1.0.1
       
     </span>
   </a>
@@ -2630,6 +2630,28 @@
     <span class="md-ellipsis">
       
         sys.panic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sysargv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sys.argv
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sysperformance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sys.performance
       
     </span>
   </a>
@@ -4473,10 +4495,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#v100-initial-release" class="md-nav__link">
+  <a href="#v101" class="md-nav__link">
     <span class="md-ellipsis">
       
-        v1.0.0 (Initial Release)
+        v1.0.1
       
     </span>
   </a>
@@ -6678,6 +6700,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#sysargv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sys.argv
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sysperformance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sys.performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#syscolor" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8430,7 +8474,7 @@
 
 
 <h1 id="zen-programming-language">ZEN Programming Language<a class="headerlink" href="#zen-programming-language" title="Permanent link">&para;</a></h1>
-<p><strong>Version 1.0.0</strong> · Stable · June 2026</p>
+<p><strong>Version 1.0.1</strong> · Stable · June 2026</p>
 <p><strong>GitHub</strong>: https://github.com/<code>Jishith-dev/Zen</code>
 <strong>Contact</strong>: jishithmp534@gmail.com</p>
 <hr />
@@ -8490,8 +8534,8 @@
 </table>
 <hr />
 <h2 id="version">Version<a class="headerlink" href="#version" title="Permanent link">&para;</a></h2>
-<p>Current Version: v1.0.0</p>
-<h3 id="v100-initial-release">v1.0.0 (Initial Release)<a class="headerlink" href="#v100-initial-release" title="Permanent link">&para;</a></h3>
+<p>Current Version: v1.0.1</p>
+<h3 id="v101">v1.0.1<a class="headerlink" href="#v101" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Full LLVM-based compiler pipeline</li>
 <li>Lexer, Parser, AST generation</li>
@@ -8821,7 +8865,7 @@ A chain of reactive dependencies is fully supported. Updates propagate through t
 </tbody>
 </table>
 <p>Keywords are case-sensitive. <code>fn</code> is reserved; <code>Fn</code> and <code>FN</code> are valid identifiers.</p>
-<p>ZEN reserves async and await as keywords in v1.0.0, and the parser recognizes their syntax, but code generation for asynchronous concurrency is not yet implemented. Full async/await support, including the concurrency model and runtime semantics, is planned for v2.</p>
+<p>ZEN reserves async and await as keywords in v1, and the parser recognizes their syntax, but code generation for asynchronous concurrency is not yet implemented. Full async/await support, including the concurrency model and runtime semantics, is planned for v2.</p>
 <hr />
 <h3 id="25-identifiers">2.5 Identifiers<a class="headerlink" href="#25-identifiers" title="Permanent link">&para;</a></h3>
 <p>An identifier is a user-defined name for a variable, function, or other declared entity.</p>
@@ -8860,14 +8904,14 @@ A chain of reactive dependencies is fully supported. Updates propagate through t
 <span class="err">0x1A3F</span>
 <span class="err">0x00</span>
 </code></pre></div>
-<p>Binary and octal representations are not supported in v1.0.0.</p>
+<p>Binary and octal representations are not supported in v1.</p>
 <h4 id="262-double-literals">2.6.2 Double Literals<a class="headerlink" href="#262-double-literals" title="Permanent link">&para;</a></h4>
 <p>A decimal integer part, a dot, and a decimal fractional part. Both parts are required.</p>
 <div class="language-zen highlight"><pre><span></span><code><span class="m">3</span><span class="err">.</span><span class="m">14</span>
 <span class="m">0</span><span class="err">.</span><span class="m">5</span>
 <span class="m">100</span><span class="err">.</span><span class="m">0</span>
 </code></pre></div>
-<p>Scientific notation is not supported in v1.0.0. A bare integer such as <code>42</code> is not a valid <code>double</code> literal; <code>42.0</code> must be written explicitly.</p>
+<p>Scientific notation is not supported in v1. A bare integer such as <code>42</code> is not a valid <code>double</code> literal; <code>42.0</code> must be written explicitly.</p>
 <h4 id="263-string-literals">2.6.3 String Literals<a class="headerlink" href="#263-string-literals" title="Permanent link">&para;</a></h4>
 <p>A sequence of characters enclosed in matching double or single quotes. Both forms are equivalent.</p>
 <div class="language-zen highlight"><pre><span></span><code><span class="s">&quot;hello, world&quot;</span>
@@ -9318,7 +9362,7 @@ top_level_decl
   = type &quot;const&quot; IDENTIFIER &quot;=&quot; expression
 </code></pre></div>
 <div class="language-zen highlight"><pre><span></span><code><span class="nb">int</span><span class="err"> </span><span class="n">const</span><span class="err"> </span><span class="n">MAX</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="m">100</span>
-<span class="nb">string</span><span class="err"> </span><span class="n">const</span><span class="err"> </span><span class="n">VERSION</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="s">&quot;1.0.0&quot;</span>
+<span class="nb">string</span><span class="err"> </span><span class="n">const</span><span class="err"> </span><span class="n">VERSION</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="s">&quot;1.0.1&quot;</span>
 </code></pre></div>
 <hr />
 <h3 id="45-assignment-reassignment">4.5 Assignment &amp; Reassignment<a class="headerlink" href="#45-assignment-reassignment" title="Permanent link">&para;</a></h3>
@@ -9414,8 +9458,6 @@ field_access
 <div class="language-zen highlight"><pre><span></span><code><span class="n">arr</span><span class="err">[</span><span class="m">0</span><span class="err">]</span>
 <span class="n">matrix</span><span class="err">[</span><span class="m">1</span><span class="err">][</span><span class="m">2</span><span class="err">]</span>
 <span class="n">person</span><span class="err">.</span><span class="n">name</span>
-<span class="n">map</span><span class="err">[</span><span class="s">&quot;key&quot;</span><span class="err">]</span>
-<span class="n">map</span><span class="err">[</span><span class="n">runtimeKey</span><span class="err">]</span>
 </code></pre></div>
 <hr />
 <h3 id="47-function-declarations">4.7 Function Declarations<a class="headerlink" href="#47-function-declarations" title="Permanent link">&para;</a></h3>
@@ -9601,14 +9643,11 @@ update_expr
 <span class="p">}</span><span class="err"> </span><span class="k">while</span><span class="err"> </span><span class="p">(</span><span class="n">count</span><span class="err"> </span><span class="o">&lt;</span><span class="err"> </span><span class="m">10</span><span class="p">)</span>
 </code></pre></div>
 <h4 id="loop-in-map-iteration">Loop In — Map Iteration<a class="headerlink" href="#loop-in-map-iteration" title="Permanent link">&para;</a></h4>
-<p>Iterates over key-value pairs in a <code>Map</code>.</p>
-<div class="language-text highlight"><pre><span></span><code>loop_in_stmt
-  = &quot;loop&quot; &quot;(&quot; IDENTIFIER &quot;in&quot; IDENTIFIER &quot;)&quot; block
-</code></pre></div>
-<div class="language-zen highlight"><pre><span></span><code><span class="k">loop</span><span class="err"> </span><span class="p">(</span><span class="n">value</span><span class="err"> </span><span class="n">in</span><span class="err"> </span><span class="n">myMap</span><span class="p">)</span><span class="err"> </span><span class="p">{</span>
-<span class="err">  </span><span class="c"># value holds the current map value one by one</span>
-<span class="p">}</span>
-</code></pre></div>
+<blockquote>
+<p>⚠️ <strong>Disabled in Zen</strong> — <code>loop in</code> over a <code>Map</code> is not supported.<br />
+Maps are heterogeneous (values can be any type), so iteration is undefined at compile time.<br />
+This will throw a compile-time error.</p>
+</blockquote>
 <h4 id="loop-of-array-and-list-iteration">Loop Of — Array and List Iteration<a class="headerlink" href="#loop-of-array-and-list-iteration" title="Permanent link">&para;</a></h4>
 <p>Iterates over elements of a <code>List</code>, fixed-size array, or rest parameter (which is internally treated as a <code>List</code>).</p>
 <div class="language-text highlight"><pre><span></span><code>loop_of_stmt
@@ -9821,7 +9860,7 @@ method_call
 <li><code>List&lt;T&gt;</code></li>
 <li>Nested <code>Map</code></li>
 </ul>
-<p>Struct instances may not be stored as Map values in v1.0.0.</p>
+<p>Struct instances may not be stored as Map values in v1.</p>
 <h4 id="literals-and-nesting">Literals and Nesting<a class="headerlink" href="#literals-and-nesting" title="Permanent link">&para;</a></h4>
 <p>Map literals use identifier keys with colon-separated values. Maps may be nested to any depth.</p>
 <div class="language-zen highlight"><pre><span></span><code><span class="nb">Map</span><span class="err"> </span><span class="n">a</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="p">{</span>
@@ -9840,7 +9879,7 @@ method_call
 <span class="p">}</span>
 </code></pre></div>
 <blockquote>
-<p><strong>Note:</strong> Map literals are only valid at the point of declaration. Map is not a first-class value in v1.0.0 — map literals cannot be passed as arguments, returned from functions, or assigned to variables after initial declaration. This restriction may be lifted in a future version.</p>
+<p><strong>Note:</strong> Map literals are only valid at the point of declaration. Map is not a first-class value in v1.0.1 — map literals cannot be passed as arguments, returned from functions, or assigned to variables after initial declaration. This restriction may be lifted in a future version.</p>
 </blockquote>
 <h4 id="field-access">Field Access<a class="headerlink" href="#field-access" title="Permanent link">&para;</a></h4>
 <p>Fields are accessed using dot notation. Nested fields are chained.</p>
@@ -9848,10 +9887,9 @@ method_call
 <span class="n">b</span><span class="err">.</span><span class="n">nested</span><span class="err">.</span><span class="n">hobbies</span><span class="err">[</span><span class="m">0</span><span class="err">]                    </span><span class="c"># 20</span>
 <span class="n">b</span><span class="err">.</span><span class="n">nested</span><span class="err">.</span><span class="n">salary</span><span class="err">                        </span><span class="c"># 20000.5</span>
 </code></pre></div>
-<p>Runtime key access using a variable is also supported:</p>
-<div class="language-zen highlight"><pre><span></span><code><span class="nb">string</span><span class="err"> </span><span class="n">key</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="s">&quot;name&quot;</span>
-<span class="n">a</span><span class="err">[</span><span class="n">key</span><span class="err">]                                 </span><span class="c"># equivalent to a.name</span>
-</code></pre></div>
+<blockquote>
+<p>⚠️ <strong>Not supported in v1.x</strong> — Runtime key access using a variable raises a compile-time error. Planned for v2.</p>
+</blockquote>
 <h4 id="field-assignment">Field Assignment<a class="headerlink" href="#field-assignment" title="Permanent link">&para;</a></h4>
 <p>Assigning to an existing field updates its value. Assigning to a field that does not exist creates it dynamically at runtime.</p>
 <div class="language-zen highlight"><pre><span></span><code><span class="n">a</span><span class="err">.</span><span class="n">name</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="s">&quot;arun&quot;</span><span class="err">                        </span><span class="c"># update existing field</span>
@@ -9870,6 +9908,14 @@ method_call
 <td><code>free()</code></td>
 <td>Releases the Map from heap memory</td>
 </tr>
+<tr>
+<td><code>has(key)</code></td>
+<td>Returns <code>bool</code> — checks if a key exists in the Map</td>
+</tr>
+<tr>
+<td><code>remove(key)</code></td>
+<td>Removes a key-value pair from the Map</td>
+</tr>
 </tbody>
 </table>
 <div class="language-zen highlight"><pre><span></span><code><span class="n">a</span><span class="err">.</span><span class="n">free</span><span class="p">()</span>
@@ -9877,6 +9923,9 @@ method_call
 <p>After calling <code>free()</code>, the Map must not be accessed or reassigned. Any use after <code>free()</code> will result in a runtime error.</p>
 <div class="language-zen highlight"><pre><span></span><code><span class="n">a</span><span class="err">.</span><span class="n">free</span><span class="p">()</span>
 <span class="n">a</span><span class="err">.</span><span class="n">name</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="s">&quot;x&quot;</span><span class="err">                           </span><span class="c"># runtime error: use after free</span>
+</code></pre></div>
+<div class="language-zen highlight"><pre><span></span><code><span class="nb">bool</span><span class="err"> </span><span class="n">exists</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">a</span><span class="err">.</span><span class="n">has</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">)</span><span class="err">            </span><span class="c"># true if key exists</span>
+<span class="n">a</span><span class="err">.</span><span class="n">remove</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">)</span><span class="err">                       </span><span class="c"># removes key from Map</span>
 </code></pre></div>
 <hr />
 <h3 id="52-list">5.2 List<a class="headerlink" href="#52-list" title="Permanent link">&para;</a></h3>
@@ -9898,7 +9947,7 @@ method_call
 <li><code>int</code>, <code>double</code>, <code>string</code>, <code>bool</code></li>
 <li>Nested <code>List&lt;T&gt;</code></li>
 </ul>
-<p><code>Map</code> is not a valid element type in v1.0.0, as Map has no literal form for use in expressions.</p>
+<p><code>Map</code> is not a valid element type in v1, as Map has no literal form for use in expressions.</p>
 <p><code>auto</code> is not valid as a type parameter — <code>List&lt;auto&gt;</code> is a compile-time error.</p>
 <h4 id="access">Access<a class="headerlink" href="#access" title="Permanent link">&para;</a></h4>
 <p>Elements are accessed by zero-based integer index.</p>
@@ -10004,7 +10053,7 @@ dimension
 </code></pre></div>
 <h4 id="constraints">Constraints<a class="headerlink" href="#constraints" title="Permanent link">&para;</a></h4>
 <ul>
-<li>Fixed-size arrays cannot be passed as function parameters in v1.0.0.</li>
+<li>Fixed-size arrays cannot be passed as function parameters in v1.</li>
 <li>Fixed-size arrays have no built-in methods.</li>
 <li>Resizing is not possible after declaration.</li>
 </ul>
@@ -10043,7 +10092,7 @@ method_decl
 <li><code>List&lt;T&gt;</code></li>
 <li>Another <code>struct</code> type</li>
 </ul>
-<p><code>Map</code> is not a valid field type in v1.0.0.</p>
+<p><code>Map</code> is not a valid field type in v1.</p>
 <h4 id="instantiation">Instantiation<a class="headerlink" href="#instantiation" title="Permanent link">&para;</a></h4>
 <p>A struct is instantiated by declaring a variable with the struct name as its type. No constructor syntax is used.</p>
 <div class="language-zen highlight"><pre><span></span><code><span class="n">Person</span><span class="err"> </span><span class="n">p</span>
@@ -10088,7 +10137,7 @@ method_decl
 <span class="err">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Methods may have any return type, including <code>List&lt;T&gt;</code>, <code>auto</code>, or primitives. Struct instances cannot be passed as function parameters in v1.0.0, and methods cannot be called on a struct type directly — only on an instance.</p>
+<p>Methods may have any return type, including <code>List&lt;T&gt;</code>, <code>auto</code>, or primitives. Struct instances cannot be passed as function parameters in v1.0.1, and methods cannot be called on a struct type directly — only on an instance.</p>
 <div class="language-zen highlight"><pre><span></span><code><span class="n">Counter</span><span class="err"> </span><span class="n">c</span>
 <span class="n">c</span><span class="err">.</span><span class="n">value</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="m">0</span>
 <span class="n">c</span><span class="err">.</span><span class="n">increment</span><span class="p">()</span>
@@ -10096,8 +10145,8 @@ method_decl
 </code></pre></div>
 <h4 id="constraints_1">Constraints<a class="headerlink" href="#constraints_1" title="Permanent link">&para;</a></h4>
 <ul>
-<li>Struct instances cannot be passed as function parameters in v1.0.0.</li>
-<li><code>Map</code> is not a valid field type in v1.0.0.</li>
+<li>Struct instances cannot be passed as function parameters in v1.0.1.</li>
+<li><code>Map</code> is not a valid field type in v1.</li>
 <li>Methods are user-defined only; no built-in struct methods exist.</li>
 <li>Struct declarations may not be nested inside functions.</li>
 </ul>
@@ -10433,44 +10482,10 @@ default_clause
 <p>The condition is evaluated after each iteration. <code>break</code> exits immediately; <code>continue</code> jumps to the condition check.</p>
 <hr />
 <h3 id="94-loop-in-map-iteration">9.4 Loop In — Map Iteration<a class="headerlink" href="#94-loop-in-map-iteration" title="Permanent link">&para;</a></h3>
-<p>Iterates over the keys of a <code>Map</code>. On each iteration, the loop variable holds the current key as a <code>string</code>.</p>
-<div class="language-text highlight"><pre><span></span><code>loop_in_stmt
-  = &quot;loop&quot; &quot;(&quot; IDENTIFIER &quot;in&quot; IDENTIFIER &quot;)&quot; block
-</code></pre></div>
-<p>For <code>loop in</code> to be valid, two conditions must be met:</p>
-<ul>
-<li>All values in the Map must be of the same type.</li>
-<li>The Map must not contain nested fields — nested Maps or Lists as values are not permitted in a <code>loop in</code> target.</li>
-</ul>
-<p>If either condition is violated, the compiler raises an error. Full heterogeneous and nested Map iteration is deferred to v2.</p>
-<div class="language-zen highlight"><pre><span></span><code><span class="nb">Map</span><span class="err"> </span><span class="n">config</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="p">{</span>
-<span class="err">  </span><span class="n">host</span><span class="err">: </span><span class="s">&quot;localhost&quot;</span><span class="err">,</span>
-<span class="err">  </span><span class="n">port</span><span class="err">: </span><span class="s">&quot;8080&quot;</span>
-<span class="p">}</span>
-
-<span class="k">loop</span><span class="err"> </span><span class="p">(</span><span class="n">key</span><span class="err"> </span><span class="n">in</span><span class="err"> </span><span class="n">config</span><span class="p">)</span><span class="err"> </span><span class="p">{</span>
-<span class="err">  </span><span class="nb">string</span><span class="err"> </span><span class="n">val</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">config</span><span class="err">[</span><span class="n">key</span><span class="err">]             </span><span class="c"># all values are string, no nesting — valid</span>
-<span class="p">}</span>
-</code></pre></div>
-<div class="language-zen highlight"><pre><span></span><code><span class="nb">Map</span><span class="err"> </span><span class="n">mixed</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="p">{</span>
-<span class="err">  </span><span class="n">name</span><span class="err">: </span><span class="s">&quot;zen&quot;</span><span class="err">,</span>
-<span class="err">  </span><span class="n">age</span><span class="err">: </span><span class="m">21</span>
-<span class="p">}</span>
-
-<span class="k">loop</span><span class="err"> </span><span class="p">(</span><span class="n">key</span><span class="err"> </span><span class="n">in</span><span class="err"> </span><span class="n">mixed</span><span class="p">)</span><span class="err"> </span><span class="p">{</span><span class="err">                  </span><span class="c"># compile-time error: heterogeneous values</span>
-<span class="p">}</span>
-</code></pre></div>
-<div class="language-zen highlight"><pre><span></span><code><span class="nb">Map</span><span class="err"> </span><span class="n">nested</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="p">{</span>
-<span class="err">  </span><span class="n">info</span><span class="err">: </span><span class="p">{</span>
-<span class="err">    </span><span class="n">city</span><span class="err">: </span><span class="s">&quot;Bangalore&quot;</span>
-<span class="err">  </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="k">loop</span><span class="err"> </span><span class="p">(</span><span class="n">key</span><span class="err"> </span><span class="n">in</span><span class="err"> </span><span class="n">nested</span><span class="p">)</span><span class="err"> </span><span class="p">{</span><span class="err">                 </span><span class="c"># compile-time error: nested fields not allowed</span>
-<span class="p">}</span>
-</code></pre></div>
-<p><code>break</code> and <code>continue</code> work normally inside <code>loop in</code>.</p>
-<hr />
+<blockquote>
+<p>⚠️ <strong>Not supported in v1.x</strong> — <code>loop in</code> over a <code>Map</code> raises a compile-time error.
+Maps are heterogeneous, so value iteration is undefined at compile time. Planned for v2.</p>
+</blockquote>
 <h3 id="95-loop-of-list-and-array-iteration">9.5 Loop Of — List and Array Iteration<a class="headerlink" href="#95-loop-of-list-and-array-iteration" title="Permanent link">&para;</a></h3>
 <p>Iterates over the elements of a <code>List</code>, fixed-size array, or rest parameter. On each iteration, the loop variable holds the current element.</p>
 <div class="language-text highlight"><pre><span></span><code>loop_of_stmt
@@ -10590,7 +10605,7 @@ identifier_list
 </tr>
 <tr>
 <td>Struct declarations</td>
-<td>Not supported in v1.0.0</td>
+<td>Not supported in v1.0.1</td>
 </tr>
 </tbody>
 </table>
@@ -10606,7 +10621,7 @@ identifier_list
 <span class="n">export</span><span class="p">(</span><span class="n">a</span><span class="err">, </span><span class="n">add</span><span class="err">, </span><span class="n">MAX</span><span class="p">)</span><span class="err">    </span><span class="c"># b would cause a compile-time error here</span>
 </code></pre></div>
 <h4 id="exported-files-and-import-restriction">Exported Files and Import Restriction<a class="headerlink" href="#exported-files-and-import-restriction" title="Permanent link">&para;</a></h4>
-<p>A file that exports identifiers must not itself contain any <code>import</code> statement. Circular or dependent module chains are not permitted in v1.0.0. This is a compile-time error.</p>
+<p>A file that exports identifiers must not itself contain any <code>import</code> statement. Circular or dependent module chains are not permitted in v1.0.1. This is a compile-time error.</p>
 <div class="language-zen highlight"><pre><span></span><code><span class="n">import</span><span class="p">(</span><span class="n">utils</span><span class="p">)</span><span class="err"> </span><span class="n">from</span><span class="err"> </span><span class="s">&quot;utils.zen&quot;</span><span class="err">   </span><span class="c"># compile-time error: exported file cannot import</span>
 <span class="n">export</span><span class="p">(</span><span class="n">a</span><span class="err">, </span><span class="n">add</span><span class="p">)</span>
 </code></pre></div>
@@ -11089,6 +11104,34 @@ identifier_list
 <span class="p">}</span>
 </code></pre></div>
 <hr />
+<h5 id="sysargv"><code>sys.argv</code><a class="headerlink" href="#sysargv" title="Permanent link">&para;</a></h5>
+<p>Returns the command-line arguments passed to the program as a <code>List&lt;string&gt;</code>.</p>
+<div class="language-text highlight"><pre><span></span><code>sys.argv()
+</code></pre></div>
+<p>Returns <code>List&lt;string&gt;</code>.</p>
+<div class="language-zen highlight"><pre><span></span><code><span class="nb">List</span><span class="o">&lt;</span><span class="nb">string</span><span class="o">&gt;</span><span class="err"> </span><span class="n">args</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">sys</span><span class="err">.</span><span class="n">argv</span><span class="p">()</span>
+
+<span class="k">loop</span><span class="err"> </span><span class="p">(</span><span class="n">arg</span><span class="err"> </span><span class="n">in</span><span class="err"> </span><span class="n">args</span><span class="p">)</span><span class="err"> </span><span class="p">{</span>
+<span class="err">  </span><span class="n">screen</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p><code>args[0]</code> is always the path to the compiled binary.</p>
+</blockquote>
+<hr />
+<h5 id="sysperformance"><code>sys.performance</code><a class="headerlink" href="#sysperformance" title="Permanent link">&para;</a></h5>
+<p>Returns the current monotonic time in milliseconds as a <code>double</code>. Used for benchmarking and measuring execution time.</p>
+<div class="language-text highlight"><pre><span></span><code>sys.performance()
+</code></pre></div>
+<p>Returns <code>double</code>.</p>
+<div class="language-zen highlight"><pre><span></span><code><span class="nb">double</span><span class="err"> </span><span class="n">start</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">sys</span><span class="err">.</span><span class="n">performance</span><span class="p">()</span>
+
+<span class="c"># ... code to benchmark ...</span>
+
+<span class="nb">double</span><span class="err"> </span><span class="n">end</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="n">sys</span><span class="err">.</span><span class="n">performance</span><span class="p">()</span>
+<span class="n">screen</span><span class="p">(</span><span class="n">end</span><span class="err"> </span><span class="o">-</span><span class="err"> </span><span class="n">start</span><span class="p">)</span><span class="err">                    </span><span class="c"># elapsed time in ms</span>
+</code></pre></div>
+<hr />
 <h5 id="syscolor"><code>sys.color</code><a class="headerlink" href="#syscolor" title="Permanent link">&para;</a></h5>
 <p>Changes the terminal output color using ANSI formatting. Affects all subsequent <code>screen</code> output until changed again.</p>
 <div class="language-text highlight"><pre><span></span><code>sys.color(&quot;color&quot;)
@@ -11112,9 +11155,9 @@ identifier_list
 </tbody>
 </table>
 <p>Returns <code>void</code>.</p>
-<div class="language-zen highlight"><pre><span></span><code><span class="n">color</span><span class="p">(</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+<div class="language-zen highlight"><pre><span></span><code><span class="n">sys</span><span class="err">.</span><span class="n">color</span><span class="p">(</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
 <span class="n">screen</span><span class="p">(</span><span class="s">&quot;error occurred&quot;</span><span class="p">)</span>
-<span class="n">color</span><span class="p">(</span><span class="s">&quot;reset&quot;</span><span class="p">)</span>
+<span class="n">sys</span><span class="err">.</span><span class="n">color</span><span class="p">(</span><span class="s">&quot;reset&quot;</span><span class="p">)</span>
 <span class="n">screen</span><span class="p">(</span><span class="s">&quot;back to normal&quot;</span><span class="p">)</span>
 </code></pre></div>
 <hr />
@@ -12097,7 +12140,7 @@ Output: <code>.ll</code> LLVM IR file</p>
 Output: Native binary</p>
 <hr />
 <h3 id="123-host-language">12.3 Host Language<a class="headerlink" href="#123-host-language" title="Permanent link">&para;</a></h3>
-<p>The ZEN compiler is implemented in <strong>JavaScript</strong> and runs on <strong>Node.js</strong>. This is the v1.0.0 host. Self-hosting — rewriting the compiler in ZEN itself — is a future goal and not part of the current specification.</p>
+<p>The ZEN compiler is implemented in <strong>JavaScript</strong> and runs on <strong>Node.js</strong>. This is the v1 host. Self-hosting — rewriting the compiler in ZEN itself — is a future goal and not part of the current specification.</p>
 <hr />
 <h3 id="124-optimization">12.4 Optimization<a class="headerlink" href="#124-optimization" title="Permanent link">&para;</a></h3>
 <p>ZEN uses Clang's <code>-O2</code> optimization level, which enables aggressive optimizations including:</p>
@@ -12107,7 +12150,7 @@ Output: Native binary</p>
 <li>Constant folding and propagation</li>
 <li>Loop optimizations</li>
 </ul>
-<p>No user-facing optimization flags are exposed in v1.0.0. All compilation uses <code>-O2</code> by default.</p>
+<p>No user-facing optimization flags are exposed in v1.0.1. All compilation uses <code>-O2</code> by default.</p>
 <hr />
 <h3 id="125-cli">12.5 CLI<a class="headerlink" href="#125-cli" title="Permanent link">&para;</a></h3>
 <p>ZEN is invoked from the command line using the <code>zen</code> command.</p>
@@ -12492,17 +12535,10 @@ Raised when a variable, function, struct, field, or map key is referenced but ha
 - Retaining a reference to a freed object across function calls</p>
 <hr />
 <h4 id="looperror">LoopError<a class="headerlink" href="#looperror" title="Permanent link">&para;</a></h4>
-<p>Raised when a <code>loop in</code> iterates over a <code>Map</code> whose value types cannot be resolved uniformly at runtime.</p>
+<p>Raised when <code>loop in</code> is used on a <code>Map</code>.</p>
 <div class="language-text highlight"><pre><span></span><code>[Zen  LoopError]
-  └── Cannot iterate — Map &#39;data&#39; contains heterogeneous value types
+  └── Cannot iterate over Map — &#39;loop in&#39; on Map is not supported in v1.x
 </code></pre></div>
-<div class="language-text highlight"><pre><span></span><code>[Zen  LoopError]
-  └── Cannot iterate — Map &#39;config&#39; contains nested values incompatible with &#39;loop in&#39;
-</code></pre></div>
-<p>Common triggers:
-- Using <code>loop in</code> on a <code>Map</code> that holds values of mixed types
-- Using <code>loop in</code> on a <code>Map</code> with nested or complex value structures</p>
-<hr />
 <h4 id="panicerror">PanicError<a class="headerlink" href="#panicerror" title="Permanent link">&para;</a></h4>
 <p>Raised explicitly by the program via <code>sys.panic()</code>. Signals an unrecoverable state defined by the developer.</p>
 <div class="language-text highlight"><pre><span></span><code>[Zen  PanicError]
@@ -12516,7 +12552,7 @@ Raised when a variable, function, struct, field, or map key is referenced but ha
 - Defensive assertions that should never be reached in correct programs</p>
 <hr />
 <h3 id="134-error-improvement-roadmap">13.4 Error Improvement Roadmap<a class="headerlink" href="#134-error-improvement-roadmap" title="Permanent link">&para;</a></h3>
-<p>ZEN v1.0.0 provides partial stack traces showing only the frame where the error occurred. The following improvements are planned for v2:</p>
+<p>ZEN v1.0.1 may provides partial stack traces showing only the frame where the error occurred. The following improvements are planned for v2:</p>
 <ul>
 <li>Full call stack traces across all active frames</li>
 <li>Better source location tracking through nested expressions</li>
@@ -13050,8 +13086,8 @@ Raised when a variable, function, struct, field, or map key is referenced but ha
 </tr>
 <tr>
 <td><code>LoopError</code></td>
-<td>Runtime</td>
-<td><code>loop in</code> on heterogeneous or nested Map</td>
+<td>Compile-time</td>
+<td><code>loop in</code> on a <code>Map</code> is not supported in v1.x</td>
 </tr>
 </tbody>
 </table>
