@@ -764,6 +764,20 @@
 <span class="w">  </span><span class="nt">&quot;main&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;main.zen&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
+<ul>
+<li>Added official <strong>Zen Package Registry</strong> for package management</li>
+<li>Added <code>zen signup</code> and <code>zen login</code> for authentication</li>
+<li>Added <code>zen logout</code> and <code>zen whoami</code> for account management</li>
+<li>Added <code>zen install &lt;package&gt;</code> to install packages from registry</li>
+<li>Added <code>zen publish</code> to publish packages to registry</li>
+<li>Added <code>zen unpublish</code> to remove packages from registry</li>
+<li>Added <code>zen list</code> with pagination to browse all packages (50 per page)</li>
+<li>Registry supports both runnable applications (<code>main</code>) and library packages (<code>bin</code>)</li>
+<li>Library packages install to <code>~/.zen/packages/</code></li>
+<li>Runnable applications install to current directory</li>
+<li>Secure JWT-based authentication</li>
+<li>GitHub-hosted package source code</li>
+</ul>
 <h3 id="fixes">Fixes<a class="headerlink" href="#fixes" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>contains()</code> no longer performs struct literal comparisons</li>
