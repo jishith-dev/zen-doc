@@ -4,7 +4,6 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Zen — Programming Language</title>
-
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -533,7 +532,7 @@ footer{
     <a href="#features">Features</a>
     <a href="#benchmark">Benchmark</a>
     <a href="#install">Install</a>
-    <a href="./site/index.html" class="nav-cta">Docs →</a>
+    <a href="#" class="nav-cta">Docs →</a>
   </div>
 </nav>
 
@@ -541,7 +540,7 @@ footer{
 <section id="hero">
   <div class="hero-badge">
     <span class="dot"></span>
-    v1.0.0 — Stable Release
+    v1.1.1 — Stable Release
   </div>
   <h1 class="hero-title">
     <span class="t1">The Language</span>
@@ -561,15 +560,15 @@ footer{
       <div class="stat-label">Backend</div>
     </div>
     <div class="stat">
-      <div class="stat-num">102</div>
+      <div class="stat-num">162</div>
       <div class="stat-label">Stdlib APIs</div>
     </div>
     <div class="stat">
-      <div class="stat-num">5</div>
+      <div class="stat-num">4</div>
       <div class="stat-label">Loop Forms</div>
     </div>
     <div class="stat">
-      <div class="stat-num">v1.0</div>
+      <div class="stat-num">v1.1.1</div>
       <div class="stat-label">Feature Complete</div>
     </div>
   </div>
@@ -629,10 +628,10 @@ footer{
     <div class="code-card">
       <div class="code-card-header">
         <span class="code-card-title">Control Flow</span>
-        <span class="code-card-tag">5 loop forms</span>
+        <span class="code-card-tag">4 loop forms</span>
       </div>
-      <pre><code><span class="cm"># c-style loop</span>
-<span class="kw">loop</span> (<span class="ty">int</span> i = <span class="num">0</span>, i &lt; <span class="num">10</span>, i++) {
+      <pre><code><span class="cm"># normal loop</span>
+<span class="kw">loop</span> (<span class="ty">int</span> i = <span class="num">0</span>; i &lt; <span class="num">10</span>; i++) {
   <span class="fn">screen</span>(i)
 }
 
@@ -647,11 +646,6 @@ footer{
 <span class="cm"># iterate List or fixed size arrays kr rest params</span>
 <span class="kw">loop</span> (n <span class="kw">of</span> nums) {
   <span class="fn">screen</span>(n)
-}
-
-<span class="cm"># iterate map</span>
-<span class="kw">loop</span> (k <span class="kw">in</span> person) {
-  <span class="fn">screen</span>(k)
 }</code></pre>
     </div>
     <div class="code-card">
@@ -666,7 +660,7 @@ nums.<span class="fn">push</span>(<span class="num">4</span>)
 
 <span class="cm"># map</span>
 <span class="ty">Map</span> person = {
-  name: <span class="str">"Achu"</span>,
+  name: <span class="str">"Jishith"</span>,
   age: <span class="num">25</span>
 }
 
@@ -684,37 +678,31 @@ person.<span class="fn">remove</span>(<span class="str">"age"</span>)</code></pr
   </div>
   <div class="features-grid reveal">
     <div class="feature-card">
-      <div class="feature-icon" style="color:var(--kw)">⚡</div>
       <div class="feature-title">LLVM Backend</div>
       <div class="feature-desc">Compiles directly to LLVM IR, giving you native performance with access to decades of compiler optimization work.</div>
       <span class="feature-tag">native binary</span>
     </div>
     <div class="feature-card">
-      <div class="feature-icon" style="color:var(--type)">🔒</div>
       <div class="feature-title">Compile-Time First</div>
       <div class="feature-desc">Type resolution, semantic checks, and error detection happen at compile time. Bounds and key access are caught at runtime with precise error messages.</div>
       <span class="feature-tag">no silent failures</span>
     </div>
     <div class="feature-card">
-      <div class="feature-icon" style="color:var(--fn)">🧩</div>
       <div class="feature-title">Module System</div>
       <div class="feature-desc">Clean export/import model with strict ordering rules. No circular dependencies, no ambiguous resolution.</div>
       <span class="feature-tag">explicit exports</span>
     </div>
     <div class="feature-card">
-      <div class="feature-icon" style="color:var(--str)">📦</div>
       <div class="feature-title">102 Stdlib APIs</div>
       <div class="feature-desc">Math, strings, I/O, HTTP, time, regex, JSON path navigation, terminal colors — batteries included.</div>
       <span class="feature-tag">stdlib v1</span>
     </div>
     <div class="feature-card">
-      <div class="feature-icon" style="color:var(--accent)">🔁</div>
       <div class="feature-title">Reactive Variables</div>
       <div class="feature-desc">Declare variables that automatically re-evaluate when their dependencies change. First-class language feature.</div>
       <span class="feature-tag">reactive keyword</span>
     </div>
     <div class="feature-card">
-      <div class="feature-icon" style="color:var(--punct)">⚙️</div>
       <div class="feature-title">Self-Hosting in Progress</div>
       <div class="feature-desc">The Zen lexer is already written in Zen itself. Full compiler bootstrap is underway.</div>
       <span class="feature-tag">bootstrapping</span>
@@ -817,7 +805,7 @@ person.<span class="fn">remove</span>(<span class="str">"age"</span>)</code></pr
     <a href="https://github.com/Jishith-dev/Zen">GitHub</a>
     <a href="./site/changelog/index.html">Changelog</a>
   </div>
-  <div class="footer-copy">// built in the open · v1.0.0</div>
+  <div class="footer-copy">// built in the open · v1.1.1</div>
 </footer>
 
 <script>
