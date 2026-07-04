@@ -513,6 +513,78 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#v121" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v1.2.1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.2.1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#language_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Language
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standard-library_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Library
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tooling_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tooling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compiler-runtime_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compiler &amp; Runtime
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -658,6 +730,78 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#v121" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v1.2.1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.2.1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#language_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Language
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standard-library_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Library
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tooling_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tooling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compiler-runtime_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compiler &amp; Runtime
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -782,6 +926,67 @@
 <ul>
 <li><code>contains()</code> no longer performs struct literal comparisons</li>
 <li>Various compiler, runtime, and standard library bug fixes</li>
+</ul>
+<h2 id="v121">v1.2.1<a class="headerlink" href="#v121" title="Permanent link">&para;</a></h2>
+<h3 id="language_1">Language<a class="headerlink" href="#language_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Introduced <code>enum</code> with constant integer values</li>
+<li>Added support for importing and exporting within the same module</li>
+<li>Added circular import detection and resolution</li>
+<li>Added installed package imports (<code>import(...) from "package"</code>)</li>
+<li>Exported modules can now import other modules and packages</li>
+<li>Added built-in <code>HttpServer</code>, <code>HttpRequest</code>, and <code>HttpResponse</code> structs</li>
+</ul>
+<h3 id="standard-library_1">Standard Library<a class="headerlink" href="#standard-library_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Added <code>httpServer</code> namespace</li>
+<li>Added <code>httpServer.create(port)</code></li>
+<li>Added <code>HttpServer.listen()</code></li>
+<li>Added <code>HttpServer.next()</code></li>
+<li>Added <code>HttpServer.close()</code></li>
+<li>Added <code>HttpRequest.method</code></li>
+<li>Added <code>HttpRequest.path</code></li>
+<li>Added <code>HttpRequest.json()</code></li>
+<li>Added <code>HttpRequest.html()</code></li>
+<li>Added <code>HttpRequest.css()</code></li>
+<li>Added <code>HttpRequest.send()</code></li>
+<li>Added <code>HttpRequest.setHeader()</code></li>
+<li>Added <code>HttpRequest.redirect()</code></li>
+<li>Added <code>HttpRequest.status()</code></li>
+<li>Added <code>sys.setEnv()</code></li>
+<li>Added <code>sys.hasEnv()</code></li>
+<li>Added <code>sys.timestamp()</code></li>
+<li>Added <code>sys.execOutput()</code></li>
+<li>Added <code>os.exit()</code></li>
+<li>Added <code>os.pid()</code></li>
+<li>Added <code>os.parentPid()</code></li>
+<li>Added <code>os.platform()</code></li>
+<li>Added <code>os.isWindows()</code></li>
+<li>Added <code>os.isLinux()</code></li>
+<li>Added <code>os.isMac()</code></li>
+<li>Added <code>os.isAndroid()</code></li>
+<li>Added <code>os.homeDir()</code></li>
+</ul>
+<h3 id="tooling_1">Tooling<a class="headerlink" href="#tooling_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Added <code>zen recovery</code> for account recovery</li>
+<li>Added <code>zen uninstall &lt;package&gt;</code></li>
+<li>Added <code>zen search &lt;package&gt;</code></li>
+<li>Added <code>zen kind &lt;package&gt;</code></li>
+<li>Added <code>zen mine</code></li>
+<li><code>zen install</code> now automatically detects the repository's default Git branch</li>
+<li>Increased package description limit from 50 to 400 characters</li>
+<li>Migrated the package registry backend from JSON storage to PostgreSQL</li>
+</ul>
+<h3 id="compiler-runtime_1">Compiler &amp; Runtime<a class="headerlink" href="#compiler-runtime_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Improved module dependency resolution</li>
+<li>Improved import/export compilation</li>
+<li>Improved HTTP runtime support</li>
+</ul>
+<h3 id="fixes_1">Fixes<a class="headerlink" href="#fixes_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Various compiler, runtime, CLI, package registry, and standard library bug fixes</li>
 </ul>
 
 
