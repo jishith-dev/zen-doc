@@ -1216,6 +1216,137 @@ Use <code>time.now()</code> instead.</p>
 <ul>
 <li>Various compiler, runtime, CLI, package registry, and standard library bug fixes</li>
 </ul>
+<hr />
+<h1 id="v200-major-release">v2.0.0 — Major Release<a class="headerlink" href="#v200-major-release" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>⚠️ <strong>Breaking Release</strong></p>
+<p><strong>ZEN v2</strong> introduces the largest language update since the initial release. Several language constructs have been refined for improved consistency, readability, and long-term stability.</p>
+<p>From <strong>v2 onwards, the language syntax is considered frozen for backward compatibility.</strong> Future releases will focus on new features and APIs while preserving existing syntax whenever possible.</p>
+</blockquote>
+<hr />
+<h2 id="language_3">Language<a class="headerlink" href="#language_3" title="Permanent link">&para;</a></h2>
+<h3 id="syntax-changes">Syntax Changes<a class="headerlink" href="#syntax-changes" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>⚠️ <strong>Breaking Change</strong></p>
+<p>Struct field declarations now use <strong><code>type name</code></strong> order.</p>
+<p><strong>Old</strong>
+<div class="language-zen highlight"><pre><span></span><code><span class="n">name</span><span class="err"> </span><span class="nb">string</span>
+<span class="n">age</span><span class="err"> </span><span class="nb">int</span>
+</code></pre></div></p>
+<p><strong>New</strong>
+<div class="language-zen highlight"><pre><span></span><code><span class="nb">string</span><span class="err"> </span><span class="n">name</span>
+<span class="nb">int</span><span class="err"> </span><span class="n">age</span>
+</code></pre></div></p>
+<p>⚠️ <strong>Breaking Change</strong></p>
+<p><code>const</code> now appears <strong>before</strong> the type.</p>
+<p><strong>Old</strong>
+<div class="language-zen highlight"><pre><span></span><code><span class="nb">int</span><span class="err"> </span><span class="n">const</span><span class="err"> </span><span class="n">age</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="m">10</span>
+</code></pre></div></p>
+<p><strong>New</strong>
+<div class="language-zen highlight"><pre><span></span><code><span class="n">const</span><span class="err"> </span><span class="nb">int</span><span class="err"> </span><span class="n">age</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="m">10</span>
+</code></pre></div></p>
+<p>⚠️ <strong>Breaking Change</strong></p>
+<p><code>byte</code> has been replaced by the built-in <code>Byte</code> struct.</p>
+<p>Binary APIs now use <code>List&lt;Byte&gt;</code>, and byte values are created using <code>toByte()</code>.</p>
+</blockquote>
+<ul>
+<li>Added callback function parameters (<code>fn cb(...)</code>)</li>
+<li>Added <code>thread fn</code> for lightweight concurrent execution</li>
+<li>Added <code>extern fn</code> for foreign function declarations without name mangling</li>
+<li>Added generic function call syntax (<code>function&lt;Type&gt;()</code>) for type-safe generic returns</li>
+<li>Added built-in <code>Ptr</code> struct for native pointer manipulation</li>
+<li>Added built-in <code>Byte</code> struct for binary data</li>
+<li>Added global <code>toByte()</code> conversion function</li>
+<li><code>Map</code> is now implemented as a built-in struct instead of a language data type</li>
+<li>Added struct-style <code>Map</code> literals</li>
+<li>Introduced ownership semantics for runtime-managed objects</li>
+<li>Improved compile-time type safety for generic APIs</li>
+</ul>
+<hr />
+<h2 id="standard-library_3">Standard Library<a class="headerlink" href="#standard-library_3" title="Permanent link">&para;</a></h2>
+<h3 id="http">HTTP<a class="headerlink" href="#http" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Added <code>http.urlEncode()</code></li>
+<li>Added <code>http.urlDecode()</code></li>
+<li>Added <code>http.setHeader()</code></li>
+<li>Added <code>http.clearHeaders()</code></li>
+<li>Added <code>http.lastStatus()</code></li>
+<li>Added configurable request timeout support</li>
+</ul>
+<h3 id="threads">Threads<a class="headerlink" href="#threads" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Added <code>threads</code> namespace</li>
+<li>Added <code>threads.waitAll()</code></li>
+</ul>
+<h3 id="debug">Debug<a class="headerlink" href="#debug" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Added <code>debug</code> namespace</li>
+<li>Added <code>debug.pretty()</code> for formatted printing of Lists, Maps, and structs</li>
+</ul>
+<hr />
+<h2 id="compiler-runtime_3">Compiler &amp; Runtime<a class="headerlink" href="#compiler-runtime_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Added runtime support for thread execution</li>
+<li>Added callback code generation support</li>
+<li>Added external function declarations</li>
+<li>Added native pointer runtime (<code>Ptr</code>)</li>
+<li>Migrated <code>Map</code> to an opaque built-in runtime struct</li>
+<li>Migrated binary APIs to <code>List&lt;Byte&gt;</code></li>
+<li>Added compile-time ownership validation where possible</li>
+<li>Added runtime detection for invalid ownership operations</li>
+<li>Added runtime detection for use-after-free errors</li>
+<li>Improved generic type resolution for nested <code>List</code> types</li>
+<li>Improved built-in struct handling</li>
+<li>Improved <code>Byte</code> runtime integration</li>
+<li>Improved HTTP runtime</li>
+<li>Improved parser consistency</li>
+<li>Improved formatter support</li>
+</ul>
+<hr />
+<h2 id="tooling_2">Tooling<a class="headerlink" href="#tooling_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Added official source formatter (<code>zen fmt</code>)</li>
+<li>Added built-in linter (<code>zen lint</code>)</li>
+<li>Added Language Server Protocol (LSP) implementation</li>
+<li>Added editor auto-completion support</li>
+<li>Added hover information support</li>
+<li>Added signature help support</li>
+<li>Improved diagnostics</li>
+<li>Improved code formatting workflow</li>
+<li>Improved developer tooling integration</li>
+</ul>
+<hr />
+<h2 id="documentation_1">Documentation<a class="headerlink" href="#documentation_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Completely rewritten language specification</li>
+<li>Updated all syntax examples to v2</li>
+<li>Added thread documentation</li>
+<li>Added callback documentation</li>
+<li>Added <code>extern</code> documentation</li>
+<li>Added <code>Ptr</code> documentation</li>
+<li>Added <code>Byte</code> documentation</li>
+<li>Added <code>toByte()</code> documentation</li>
+<li>Added ownership semantics documentation</li>
+<li>Added <code>Map</code> runtime documentation</li>
+<li>Expanded built-in struct documentation</li>
+<li>Updated binary API documentation to <code>List&lt;Byte&gt;</code></li>
+<li>Improved API reference</li>
+<li>Improved appendix and language reference</li>
+</ul>
+<hr />
+<h2 id="fixes_3">Fixes<a class="headerlink" href="#fixes_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Fixed numerous parser bugs</li>
+<li>Fixed formatter inconsistencies</li>
+<li>Fixed built-in struct handling</li>
+<li>Fixed HTTP runtime issues</li>
+<li>Fixed generic type resolution</li>
+<li>Fixed module and compiler edge cases</li>
+<li>Fixed known compiler, runtime, tooling, and standard library bugs</li>
+</ul>
+<hr />
+<h2 id="notes_1">Notes<a class="headerlink" href="#notes_1" title="Permanent link">&para;</a></h2>
+<p>This release marks the beginning of the <strong>ZEN v2</strong> series. The language syntax is now considered stable, with future releases focusing on new capabilities, performance improvements, tooling, and standard library expansion while maintaining backward compatibility.</p>
 
 
 
