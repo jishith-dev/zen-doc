@@ -1031,6 +1031,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#string-semantics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        String Semantics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heap-memory-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heap Memory Release
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5775,6 +5797,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#string-semantics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        String Semantics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heap-memory-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heap Memory Release
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -10321,6 +10365,23 @@ A chain of reactive dependencies is fully supported. Updates propagate through t
 <p>Whenever possible, the compiler diagnoses ownership violations at compile time. If a violation cannot be determined statically, the runtime detects the error and terminates execution.</p>
 <p>After an object has been freed, it immediately becomes invalid. Any attempt to access it, modify it, or free it again is illegal and results in either a compile-time diagnostic or a runtime error.</p>
 <p>In short, <strong>the parent owns the lifetime of all of its children</strong>. Only the owner of a runtime resource is permitted to destroy it.</p>
+<hr />
+<h3 id="string-semantics">String Semantics<a class="headerlink" href="#string-semantics" title="Permanent link">&para;</a></h3>
+<p><code>string</code> is a reference-semantic type.</p>
+<p><strong>All strings in Zen are heap-allocated.</strong> A string variable holds a reference to heap memory containing the string data. Assigning or passing a string copies the reference rather than duplicating the underlying string.</p>
+<p>String literals are heap-managed string values at runtime, and runtime operations such as concatenation also produce heap-allocated strings.</p>
+<p>Strings are therefore subject to Zen's ownership and lifetime rules. When a string owns heap memory, it must be released using <code>free()</code> when it is no longer needed.</p>
+<div class="language-zen highlight"><pre><span></span><code><span class="nb">string</span><span class="err"> </span><span class="n">name</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="s">&quot;Jishith&quot;</span>
+
+<span class="n">name</span><span class="err">.</span><span class="n">free</span><span class="p">()</span>
+</code></pre></div>
+<hr />
+<h3 id="heap-memory-release">Heap Memory Release<a class="headerlink" href="#heap-memory-release" title="Permanent link">&para;</a></h3>
+<p>Every heap-owned type in Zen provides a <code>.free()</code> method for explicitly releasing the memory it owns.</p>
+<blockquote>
+<p><strong>Any type that owns heap-allocated memory must expose <code>.free()</code> to release that memory.</strong></p>
+</blockquote>
+<p>This provides a consistent and explicit ownership model across Zen's type system.</p>
 <hr />
 <h2 id="scope-of-this-specification">Scope of This Specification<a class="headerlink" href="#scope-of-this-specification" title="Permanent link">&para;</a></h2>
 <p>Version 2.0.0 defines the <strong>stable core</strong> of the language:</p>
