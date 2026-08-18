@@ -18,6 +18,8 @@
         <link rel="prev" href="..">
       
       
+        <link rel="next" href="../zen_package_manager/">
+      
       
         
       
@@ -259,6 +261,25 @@
     
   
   Changelog
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../zen_package_manager/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Package Registry
 
       </a>
     </li>
@@ -672,6 +693,33 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zen_package_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package Registry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1245,6 +1293,14 @@ Use <code>time.now()</code> instead.</p>
 <p><strong>New</strong>
 <div class="language-zen highlight"><pre><span></span><code><span class="n">const</span><span class="err"> </span><span class="nb">int</span><span class="err"> </span><span class="n">age</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="m">10</span>
 </code></pre></div></p>
+</blockquote>
+<ul>
+<li>Added <code>.free()</code> method for <code>string</code> values</li>
+<li>Introduced <code>.free()</code> methods for heap-owned values</li>
+<li>Heap-owned values in Zen now provide an explicit <code>.free()</code> method for manual memory management</li>
+<li>Improved ownership and memory management semantics for heap-allocated values</li>
+</ul>
+<blockquote>
 <p>⚠️ <strong>Breaking Change</strong></p>
 <p><code>byte</code> has been replaced by the built-in <code>Byte</code> struct.</p>
 <p>Binary APIs now use <code>List&lt;Byte&gt;</code>, and byte values are created using <code>toByte()</code>.</p>
@@ -1284,6 +1340,23 @@ Use <code>time.now()</code> instead.</p>
 <li>Added <code>debug.pretty()</code> for formatted printing of Lists, Maps, and structs</li>
 </ul>
 <hr />
+<h2 id="package-registry">Package Registry<a class="headerlink" href="#package-registry" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Added package version history and version-specific publishing</li>
+<li>Added support for installing specific package versions:
+  <code>zen install &lt;package&gt;@&lt;version&gt;</code></li>
+<li>Added automatic dependency detection with <code>zen deps</code></li>
+<li>Added recursive dependency detection through imported <code>.zen</code> files</li>
+<li>Added automatic dependency installation during package installation</li>
+<li>Package dependencies are stored in <code>zen.json</code></li>
+<li>Added support for recursive package dependencies</li>
+<li>Package versions are backed by Git tags</li>
+<li>Registry now preserves previously published package versions</li>
+<li>Added version-specific package metadata and repository resolution</li>
+<li>Library packages are installed to <code>~/.zen/packages/&lt;package&gt;</code></li>
+<li>Installing a package automatically installs its dependencies</li>
+<li>Added Semantic Versioning validation for package versions</li>
+</ul>
 <h2 id="compiler-runtime_3">Compiler &amp; Runtime<a class="headerlink" href="#compiler-runtime_3" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Added runtime support for thread execution</li>
