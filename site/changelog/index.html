@@ -1420,6 +1420,60 @@ Use <code>time.now()</code> instead.</p>
 <hr />
 <h2 id="notes_1">Notes<a class="headerlink" href="#notes_1" title="Permanent link">&para;</a></h2>
 <p>This release marks the beginning of the <strong>ZEN v2</strong> series. The language syntax is now considered stable, with future releases focusing on new capabilities, performance improvements, tooling, and standard library expansion while maintaining backward compatibility.</p>
+<h2 id="v210">v2.1.0<a class="headerlink" href="#v210" title="Permanent link">&para;</a></h2>
+<h3 id="language_4">Language<a class="headerlink" href="#language_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Added new primitive type <code>byte</code> (<code>i8</code>)</li>
+<li>Added new primitive type <code>long</code> (<code>i64</code>)</li>
+<li>Added <code>L</code> suffix for <code>long</code> literals</li>
+<li>Added <code>B</code> suffix for <code>byte</code> literals</li>
+<li>Added hexadecimal <code>byte</code> literals using an explicit trailing <code>B</code> suffix</li>
+<li>Changed <code>toByte()</code> to <code>Byte()</code></li>
+<li>Added <code>Long()</code> global cast</li>
+<li>Added concatenation coercion support for <code>byte</code></li>
+<li>Added <code>setT()</code> / <code>getT()</code> support for <code>long</code> and <code>byte</code></li>
+</ul>
+<h3 id="standard-library_4">Standard Library<a class="headerlink" href="#standard-library_4" title="Permanent link">&para;</a></h3>
+<h4 id="crypto">Crypto<a class="headerlink" href="#crypto" title="Permanent link">&para;</a></h4>
+<p>Added the new <code>crypto</code> namespace:</p>
+<ul>
+<li><code>crypto.sha256(data)</code></li>
+<li><code>crypto.sha512(data)</code></li>
+<li><code>crypto.hmacSha256(key, data)</code></li>
+<li><code>crypto.hmacSha512(key, data)</code></li>
+<li><code>crypto.randomBytes(length)</code></li>
+<li><code>crypto.randomInt(min, max)</code></li>
+<li><code>crypto.base64Encode(data)</code></li>
+<li><code>crypto.base64Decode(data)</code></li>
+<li><code>crypto.base64UrlEncode(data)</code></li>
+<li><code>crypto.base64UrlDecode(data)</code></li>
+</ul>
+<h4 id="map-json">Map &amp; JSON<a class="headerlink" href="#map-json" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Added <code>Map.json()</code></li>
+<li>Added <code>Json.map()</code></li>
+</ul>
+<h3 id="compiler-runtime_4">Compiler &amp; Runtime<a class="headerlink" href="#compiler-runtime_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Changed several built-in APIs from <code>int</code> to <code>long</code> for 64-bit values.</li>
+</ul>
+<h4 id="os">OS<a class="headerlink" href="#os" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>os.totalMemory</code>: <code>int</code> → <code>long</code></li>
+<li><code>os.freeMemory</code>: <code>int</code> → <code>long</code></li>
+<li><code>os.usedMemory</code>: <code>int</code> → <code>long</code></li>
+<li><code>os.processMemory</code>: <code>int</code> → <code>long</code></li>
+<li><code>os.pid</code>: <code>int</code> → <code>long</code></li>
+<li><code>os.parentPid</code>: <code>int</code> → <code>long</code></li>
+</ul>
+<h4 id="time">Time<a class="headerlink" href="#time" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>time.millis</code>: <code>int</code> → <code>long</code></li>
+<li><code>time.now</code>: <code>int</code> → <code>long</code></li>
+<li><code>time.format</code> argument: <code>int</code> → <code>long</code></li>
+<li><code>time.sleep</code> argument: <code>int</code> → <code>long</code></li>
+</ul>
+<hr />
 
 
 
