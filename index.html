@@ -46,8 +46,6 @@ body{
   transition:transform 0.1s,background 0.2s;
   mix-blend-mode:screen;
 }
-
-  
 #cursor-ring{
   position:fixed;width:36px;height:36px;
   border:1px solid var(--accent);border-radius:50%;
@@ -546,7 +544,7 @@ footer{
 <section id="hero">
   <div class="hero-badge">
     <span class="dot"></span>
-    v2.0.0 — Stable Release
+    v2.1.0 — Stable Release
   </div>
   <h1 class="hero-title">
     <span class="t1">The Language</span>
@@ -574,7 +572,7 @@ footer{
       <div class="stat-label">Loop Forms</div>
     </div>
     <div class="stat">
-      <div class="stat-num">v2.0.0</div>
+      <div class="stat-num">v2.1.0</div>
       <div class="stat-label">Feature Complete</div>
     </div>
   </div>
@@ -599,6 +597,8 @@ footer{
       <pre><code><span class="cm"># primitive types</span>
 <span class="ty">int</span>    x = <span class="num">42</span>
 <span class="ty">double</span> pi = <span class="num">3.14</span>
+<span class="ty">long</span> timestamp = <span class="num">326293729283L</span>
+<span class="ty">byte</span> b = <span class="num">255B</span>
 <span class="ty">string</span> name = <span class="str">"zen"</span>
 <span class="ty">bool</span>   flag = <span class="kw">true</span>
 
@@ -637,7 +637,7 @@ footer{
         <span class="code-card-tag">4 loop forms</span>
       </div>
       <pre><code><span class="cm"># normal loop</span>
-<span class="kw">loop</span> (<span class="ty">int</span> i = <span class="num">0</span>; i &lt; <span class="num">10</span>; i++) {
+<span class="kw">loop</span> (<span class="ty">int</span> i = <span class="num">0</span>, i &lt; <span class="num">10</span>, i++) {
   <span class="fn">screen</span>(i)
 }
 
@@ -699,7 +699,7 @@ person.<span class="fn">remove</span>(<span class="str">"age"</span>)</code></pr
       <span class="feature-tag">explicit exports</span>
     </div>
     <div class="feature-card">
-      <div class="feature-title">102 Stdlib APIs</div>
+      <div class="feature-title">100 + Stdlib APIs</div>
       <div class="feature-desc">Math, strings, I/O, HTTP, time, regex, JSON path navigation, terminal colors — batteries included.</div>
       <span class="feature-tag">stdlib v2</span>
     </div>
@@ -808,7 +808,7 @@ person.<span class="fn">remove</span>(<span class="str">"age"</span>)</code></pr
     <a href="https://github.com/Jishith-dev/Zen">GitHub</a>
     <a href="./site/changelog/index.html">Changelog</a>
   </div>
-  <div class="footer-copy">// built in the open · v2.0.0</div>
+  <div class="footer-copy">// built in the open · v2.1.0</div>
 </footer>
 
 <script>
