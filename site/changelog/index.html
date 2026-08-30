@@ -98,7 +98,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="Zen" class="md-header__button md-logo" aria-label="Zen" data-md-component="logo">
       
-  <img src="../assets/zen-logo.svg" alt="logo">
+  <img src="../assets/zen-logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -310,7 +310,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="Zen" class="md-nav__button md-logo" aria-label="Zen" data-md-component="logo">
       
-  <img src="../assets/zen-logo.svg" alt="logo">
+  <img src="../assets/zen-logo.png" alt="logo">
 
     </a>
     Zen
@@ -1474,6 +1474,36 @@ Use <code>time.now()</code> instead.</p>
 <li><code>time.sleep</code> argument: <code>int</code> → <code>long</code></li>
 </ul>
 <hr />
+<h2 id="v211">v2.1.1<a class="headerlink" href="#v211" title="Permanent link">&para;</a></h2>
+<h3 id="standard-library_5">Standard Library<a class="headerlink" href="#standard-library_5" title="Permanent link">&para;</a></h3>
+<h4 id="http_1">HTTP<a class="headerlink" href="#http_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Added <code>HttpRequest.getHeader()</code> for retrieving a request header by name.</li>
+</ul>
+<h4 id="json-map">JSON &amp; Map<a class="headerlink" href="#json-map" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>⚠️ <strong>Important</strong></p>
+</blockquote>
+<ul>
+<li>JSON integer numbers become <code>Long</code> values when converted using <code>.map()</code>.</li>
+<li>After <code>.map()</code>, use <code>getLong()</code> to retrieve JSON integer values.</li>
+<li>Normal <code>Map</code> integer/long behavior remains unchanged.</li>
+</ul>
+<h4 id="language_5">Language<a class="headerlink" href="#language_5" title="Permanent link">&para;</a></h4>
+<h5 id="automatic-list-field-initialization">Automatic List Field Initialization<a class="headerlink" href="#automatic-list-field-initialization" title="Permanent link">&para;</a></h5>
+<ul>
+<li>List fields are automatically initialized when a new struct instance is declared without an initializer.</li>
+<li>Struct literals only initialize or assign the fields explicitly specified in the literal.</li>
+</ul>
+<h4 id="path">Path<a class="headerlink" href="#path" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>extName()</code> returns the file extension without the leading <code>.</code>.</li>
+<li><code>path.extname()</code> returns the file extension with the leading <code>.</code>.</li>
+</ul>
+<h3 id="fixes_4">Fixes<a class="headerlink" href="#fixes_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Various compiler, runtime, standard library, and type-resolution bug fixes.</li>
+</ul>
 
 
 
