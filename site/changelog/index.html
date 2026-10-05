@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../assets/zen-logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -33,7 +33,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -280,6 +280,44 @@
     
   
   Package Registry
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../architecture/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Architecture doc
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../errors/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Error reference
 
       </a>
     </li>
@@ -724,6 +762,60 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture doc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1075,7 +1167,7 @@
 <li>Added support for <code>List&lt;Struct&gt;</code></li>
 <li>Added limited struct literal support</li>
 <li>Struct variables can now be initialized using literals:
-  <div class="language-zen highlight"><pre><span></span><code><span class="n">Person</span><span class="err"> </span><span class="n">p</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="p">{</span><span class="err"> </span><span class="n">name</span><span class="err">: </span><span class="s">&quot;Jishith&quot;</span><span class="err">, </span><span class="n">age</span><span class="err">: </span><span class="m">21</span><span class="err"> </span><span class="p">}</span>
+  <div class="language-zen highlight"><pre><span></span><code><span class="n">Person</span><span class="err"> </span><span class="n">p</span><span class="err"> </span><span class="o">=</span><span class="err"> </span><span class="p">{</span><span class="err"> </span><span class="n">name</span><span class="err">: </span><span class="s">"Jishith"</span><span class="err">, </span><span class="n">age</span><span class="err">: </span><span class="m">21</span><span class="err"> </span><span class="p">}</span>
 </code></pre></div></li>
 <li>Functions can now return structs</li>
 <li>Structs can now be exported and imported across modules</li>
@@ -1117,9 +1209,9 @@
 </code></pre></div>
 <p>Generated <code>zen.json</code>:</p>
 <div class="language-json highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;project-name&gt;&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;main&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;main.zen&quot;</span>
+<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;project-name&gt;"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="s2">"main.zen"</span>
 <span class="p">}</span>
 </code></pre></div>
 <ul>
@@ -1504,6 +1596,211 @@ Use <code>time.now()</code> instead.</p>
 <ul>
 <li>Various compiler, runtime, standard library, and type-resolution bug fixes.</li>
 </ul>
+<hr />
+<h1 id="v300-major-release">v3.0.0 — Major Release<a class="headerlink" href="#v300-major-release" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>⚠️ <strong>Breaking Release</strong></p>
+<ul>
+<li><code>toString()</code> / <code>toInt()</code> renamed to <code>intToAscii()</code> / <code>asciiToInt()</code></li>
+<li><code>private</code> is now a reserved keyword (functions, methods, fields)</li>
+<li>Keyword <code>in</code> removed</li>
+<li>Classic loops must always use <code>loop (init, cond, update)</code></li>
+<li><code>+</code> with a string operand converts the other operand to a string and concatenates</li>
+<li><code>fs.writeFileBytes()</code> now returns <code>int</code> (success code) instead of <code>void</code></li>
+<li><code>sqrt()</code> now takes and returns <code>double</code></li>
+<li><code>zen tests</code> renamed to <code>zen test</code></li>
+<li><code>zen -v</code> changed to <code>zen --v</code></li>
+<li>JSON integers after <code>.map()</code> are no longer always <code>Long</code> (see Standard Library)</li>
+<li>Windows support is temporarily paused</li>
+</ul>
+</blockquote>
+<hr />
+<h2 id="language_6">Language<a class="headerlink" href="#language_6" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Formalized numeric widening: <code>byte</code> → <code>int</code> → <code>long</code> → <code>double</code></li>
+<li><code>bool</code> can now be used in arithmetic (<code>true</code> = 1, <code>false</code> = 0) and bitwise operations</li>
+<li>Added bitwise operators <code>&amp;</code>, <code>|</code>, <code>&gt;&gt;</code>, <code>&lt;&lt;</code>, <code>~</code></li>
+<li>Added unary <code>+</code></li>
+<li><code>auto</code> inference now supports <code>int</code>, <code>bool</code>, <code>double</code>, <code>string</code>, <code>long</code>, <code>byte</code></li>
+<li>Added compile-time constants (<code>int N = 10; int arr[N]</code>)</li>
+<li><code>sizeOf()</code> now supports bare types and expressions (bare struct names are not supported)</li>
+<li>Struct fields can have default initializers</li>
+<li>Uninitialized structs get zero-value fields (<code>0</code>, <code>""</code>, <code>false</code>, empty list)</li>
+<li>Struct literals only set the fields explicitly given</li>
+<li>Added anonymous inline functions as callback arguments (no closures: they cannot capture outer variables)</li>
+<li>Named functions passed as callbacks can use closures</li>
+<li>Thread functions now accept parameters and report capture errors at compile time</li>
+<li>Thread methods in structs are supported</li>
+<li>Added multiple exports and imports per file</li>
+<li>Added import aliasing for functions and variables (<code>import (worker as w)</code>); structs cannot be aliased</li>
+<li>Struct dependencies are tracked: importing a struct also registers its dependent structs as hidden (usable through the struct, not nameable)</li>
+<li>Exported functions can take or return structs that are not exported</li>
+<li>Chained calls on returned structs are supported (<code>make().show()</code>)</li>
+<li>Added <code>private</code> for fields and methods</li>
+<li>Added scientific notation for <code>double</code> literals (<code>1e300</code>, <code>1.5e-10</code>, <code>2E+5</code>)</li>
+<li><code>byte</code> is signed (-128 to 127); suffixed values outside the range wrap (two's complement)</li>
+<li>Hex literals without a suffix are always <code>int</code> (<code>0xFB</code> is 251)</li>
+<li>Hex literals with a type suffix need an underscore: <code>0xFB_B</code> is <code>byte</code>, <code>0xFF_L</code> is <code>long</code></li>
+<li>Added <code>\e</code> and <code>\xHH</code> string escapes (for example <code>"\e[31m"</code> for ANSI colors)</li>
+<li>Added constants <code>SQRT1_2</code>, <code>SQRT3</code>, <code>LOG2E</code>, <code>LOG10E</code>, <code>BYTE_MAX</code>, <code>BYTE_MIN</code>, <code>I64_MAX</code>, <code>I64_MIN</code></li>
+</ul>
+<hr />
+<h2 id="standard-library_6">Standard Library<a class="headerlink" href="#standard-library_6" title="Permanent link">&para;</a></h2>
+<h3 id="general">General<a class="headerlink" href="#general" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Added <code>lastIndexOf()</code></li>
+<li>Added <code>stringToBytes()</code> and <code>bytesToString()</code></li>
+<li><code>length()</code> now accepts a List directly, alongside <code>list.length</code></li>
+</ul>
+<h3 id="list-and-map">List and Map<a class="headerlink" href="#list-and-map" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Added <code>List.remove()</code>, <code>List.reverse()</code>, <code>List.sort()</code>, <code>List.sum()</code>, <code>List.avg()</code></li>
+<li>Added <code>List.flat()</code> (flattens any depth to depth 1)</li>
+<li>Added <code>Map.keys()</code> and <code>Map.entries()</code></li>
+</ul>
+<h3 id="json">JSON<a class="headerlink" href="#json" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>⚠️ <strong>Important</strong></p>
+<p>JSON numbers converted with <code>.map()</code> can be read with <code>getInt()</code>, <code>getByte()</code> or <code>getLong()</code>. Overflow is checked at runtime for the getter used. This replaces the v2.1.1 behavior where integers were always <code>Long</code>.</p>
+</blockquote>
+<h3 id="file-system-and-system">File System and System<a class="headerlink" href="#file-system-and-system" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Added <code>fs.listDir()</code>, <code>fs.isFile()</code>, <code>fs.isDir()</code></li>
+<li>Added <code>sys.spawn()</code>, <code>sys.kill()</code>, <code>sys.isRunning()</code>, <code>sys.wait()</code></li>
+<li>Added <code>threads.count()</code> and <code>threads.currentId()</code></li>
+</ul>
+<h3 id="networking">Networking<a class="headerlink" href="#networking" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Added TCP support: <code>Tcp</code> and <code>TcpServer</code> structs</li>
+<li>Added <code>net.online()</code>, <code>net.connect(host, port)</code>, <code>net.listen(port)</code></li>
+<li>Added <code>Tcp.send()</code>, <code>Tcp.receive()</code>, <code>Tcp.close()</code>, <code>Tcp.isOpen()</code></li>
+<li>Added <code>TcpServer.accept()</code>, <code>TcpServer.close()</code>, <code>TcpServer.isOpen()</code></li>
+</ul>
+<h3 id="http_2">HTTP<a class="headerlink" href="#http_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Added <code>http.getProgress(url, callback)</code> for downloads with progress reporting. The callback receives <code>downloaded</code> and <code>total</code> bytes (<code>long</code>), and the call returns the data as <code>List&lt;byte&gt;</code></li>
+<li>Connect timeout is 10 seconds for every request</li>
+<li>Requests without a progress callback have a 30 second total limit</li>
+<li>Requests with a progress callback have no total limit; they abort only if speed stays below 1 KB/s for 30 seconds</li>
+<li>Network failures and timeouts print a <code>NetworkError</code> and exit</li>
+</ul>
+<hr />
+<h2 id="tooling_3">Tooling<a class="headerlink" href="#tooling_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>zen install</code> and <code>zen uninstall</code> accept multiple package names</li>
+<li>renamed zen -h to zen --h</li>
+<li>Added <code>zen installed</code></li>
+<li>Added <code>zen upgrade &lt;package&gt;</code></li>
+<li>Added <code>zen install &lt;package&gt;@&lt;semver&gt;</code></li>
+<li>Added <code>zen read &lt;package&gt; [--raw]</code> to render a package README in the terminal</li>
+<li>Added <code>zen update --dev</code> to install the development version</li>
+<li>Added <code>zen test &lt;package&gt;</code> to run a package's <code>test.zen</code></li>
+<li>Added <code>zen --v &lt;package&gt;</code>, <code>zen --version &lt;package&gt;</code> and <code>zen version &lt;package&gt;</code> for installed package versions</li>
+<li>Added <code>zen info</code> for namespaces and globals (with <code>--methodName</code>)</li>
+<li><code>zen deps</code> now detects and records <code>native/*.o</code>; native objects link automatically</li>
+<li><code>.c</code> files are supported as native dependencies</li>
+<li><code>zen.json</code> supports <code>flags: []</code> at module and standalone level (for example <code>-lmariadb</code>)</li>
+<li>Added <code>--link a.o b.o</code></li>
+<li>Added interactive REPL (<code>zen</code> with no arguments); prints "Bye!" on <code>exit()</code></li>
+<li>Enhanced LSP server (<code>zen lsp</code>)</li>
+<li>Enhanced formatter and fixed bugs</li>
+<li>Fixed linter bugs</li>
+<li>Better compile-time diagnostics with hints and source text</li>
+</ul>
+<h2 id="zen-fmt">zen fmt<a class="headerlink" href="#zen-fmt" title="Permanent link">&para;</a></h2>
+<p>Formats <code>.zen</code> files. Output goes next to the source as <code>name.formatted.zen</code>
+(the original is never touched).</p>
+<h3 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code>zen fmt &lt;path...&gt; [-r | --recursive] [--no-comments]
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it formats</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>zen fmt a.zen</code></td>
+<td>one file</td>
+</tr>
+<tr>
+<td><code>zen fmt a.zen b.zen</code></td>
+<td>several files</td>
+</tr>
+<tr>
+<td><code>zen fmt src</code></td>
+<td><code>.zen</code> files directly inside <code>src</code></td>
+</tr>
+<tr>
+<td><code>zen fmt src -r</code></td>
+<td>everything under <code>src</code>, all subfolders</td>
+</tr>
+<tr>
+<td><code>zen fmt . -r</code></td>
+<td>the whole project</td>
+</tr>
+<tr>
+<td><code>zen fmt *.zen</code></td>
+<td>shell glob, works as normal multiple paths</td>
+</tr>
+</tbody>
+</table>
+<h3 id="flags">Flags<a class="headerlink" href="#flags" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>-r</code>, <code>--recursive</code>  descend into subdirectories (flag position doesn't matter)</li>
+<li><code>--no-comments</code>      drop comments from the output</li>
+</ul>
+<h3 id="rules">Rules<a class="headerlink" href="#rules" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Skipped always: <code>*.formatted.*</code> files (so re-running never formats its own output)</li>
+<li>Skipped when recursing: <code>node_modules</code>, <code>build</code>, <code>.git</code>, <code>.zen</code></li>
+<li>Duplicate paths are formatted once</li>
+<li>Errors: <code>Path not found: &lt;path&gt;</code> if an input doesn't exist,
+  <code>No .zen files found</code> if nothing matched</li>
+</ul>
+<h3 id="breaking-change">Breaking change<a class="headerlink" href="#breaking-change" title="Permanent link">&para;</a></h3>
+<p>The old <code>dir/*</code> and <code>dir/**</code> syntax is removed. The shell expanded them
+before zen saw them. Use <code>dir</code> and <code>dir -r</code> instead.</p>
+<hr />
+<h2 id="installer">Installer<a class="headerlink" href="#installer" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Added <code>--tag</code> and <code>--branch</code> install modes</li>
+<li>Branch installs skip the <code>VERSION</code> check and version from the short commit hash</li>
+<li>Verified on Termux (Android) and reviewed for apt, pacman, dnf and zypper</li>
+<li>Windows is not supported for now (documented, not auto-installed)</li>
+</ul>
+<hr />
+<h2 id="compiler-runtime_5">Compiler &amp; Runtime<a class="headerlink" href="#compiler-runtime_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Thread methods spawn through the same path as thread functions</li>
+<li>Thread context is freed inside the thread; string arguments are duplicated and freed per thread</li>
+<li>Struct dependency tracking with clear errors for naming or clashing with hidden structs</li>
+<li>Redefinition errors now show line information</li>
+<li>Unified unknown-struct error in member chains</li>
+<li>Parser supports chained access after a statement-level call</li>
+</ul>
+<hr />
+<h2 id="documentation_2">Documentation<a class="headerlink" href="#documentation_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Added architecture documentation</li>
+<li>Updated error reference</li>
+</ul>
+<hr />
+<h2 id="known-limitations">Known Limitations<a class="headerlink" href="#known-limitations" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Structs cannot be imported with an alias</li>
+<li><code>debug.pretty()</code> does not support struct fields of type <code>List&lt;Map&gt;</code></li>
+<li>HTTP timeouts are not configurable; no retry or resume</li>
+<li>Windows support is paused</li>
+</ul>
+<hr />
+<h2 id="fixes_5">Fixes<a class="headerlink" href="#fixes_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Fixed linter, formatter and LSP bugs</li>
+<li>Various compiler, runtime, CLI, and standard library bug fixes</li>
+</ul>
 
 
 
@@ -1573,7 +1870,7 @@ Use <code>time.now()</code> instead.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.code.annotate", "navigation.top", "navigation.tabs", "navigation.instant", "navigation.tracking", "search.suggest", "search.highlight", "search.share", "content.action.edit", "content.action.view"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
