@@ -441,6 +441,67 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-install-latest-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick install (latest release)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-ways-to-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other ways to install
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Options
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requirements
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -6031,6 +6092,67 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-install-latest-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick install (latest release)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-ways-to-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other ways to install
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Options
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requirements
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -11520,9 +11642,35 @@
 </div>
 <hr />
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/Jishith-dev/Zen/main/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash<span class="w"> </span>-s<span class="w"> </span>--<span class="w"> </span>--branch<span class="w"> </span>dev<span class="w"> </span>-y
+<h3 id="quick-install-latest-release">Quick install (latest release)<a class="headerlink" href="#quick-install-latest-release" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/Jishith-dev/Zen/main/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash<span class="w"> </span>-s<span class="w"> </span>--<span class="w"> </span>-y
 </code></pre></div>
-<p>Installer options (pass after <code>bash -s --</code>):</p>
+<h3 id="other-ways-to-install">Other ways to install<a class="headerlink" href="#other-ways-to-install" title="Permanent link">&para;</a></h3>
+<p><strong>Specific version</strong></p>
+<div class="language-bash highlight"><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/Jishith-dev/Zen/main/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash<span class="w"> </span>-s<span class="w"> </span>--<span class="w"> </span>-y<span class="w"> </span>--tag<span class="w"> </span><span class="m">0</span>.1.0
+</code></pre></div>
+<p><strong>From a branch</strong> (latest commit, unpinned, no VERSION check)</p>
+<div class="language-bash highlight"><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/Jishith-dev/Zen/main/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash<span class="w"> </span>-s<span class="w"> </span>--<span class="w"> </span>-y<span class="w"> </span>--branch<span class="w"> </span>main
+</code></pre></div>
+<p><strong>Custom install location</strong></p>
+<div class="language-bash highlight"><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/Jishith-dev/Zen/main/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash<span class="w"> </span>-s<span class="w"> </span>--<span class="w"> </span>-y<span class="w"> </span>--prefix<span class="w"> </span>/usr/local
+</code></pre></div>
+<p><strong>Interactive</strong> (asks before installing deps or editing your shell rc)</p>
+<div class="language-bash highlight"><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/Jishith-dev/Zen/main/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+</code></pre></div>
+<p><strong>Reinstall / upgrade</strong></p>
+<div class="language-bash highlight"><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/Jishith-dev/Zen/main/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash<span class="w"> </span>-s<span class="w"> </span>--<span class="w"> </span>-y<span class="w"> </span>--force
+</code></pre></div>
+<p><strong>Skip PATH edit</strong></p>
+<div class="language-bash highlight"><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/Jishith-dev/Zen/main/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash<span class="w"> </span>-s<span class="w"> </span>--<span class="w"> </span>-y<span class="w"> </span>--no-rc-edit
+</code></pre></div>
+<p><strong>From a local clone</strong></p>
+<div class="language-bash highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Jishith-dev/Zen.git
+<span class="nb">cd</span><span class="w"> </span>Zen
+./install.sh<span class="w"> </span>-y
+</code></pre></div>
+<h3 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h3>
+<p>Pass these after <code>bash -s --</code>:</p>
 <table>
 <thead>
 <tr>
@@ -11541,7 +11689,7 @@
 </tr>
 <tr>
 <td><code>--prefix &lt;dir&gt;</code></td>
-<td>Where to put the <code>zen</code> symlink (default: <code>~/.local/bin</code>)</td>
+<td>Where to put the <code>zen</code> symlink (default: <code>~/.local/bin</code>, or <code>$PREFIX/bin</code> on Termux)</td>
 </tr>
 <tr>
 <td><code>--force</code></td>
@@ -11556,12 +11704,41 @@
 <td>Don't edit shell rc files to add PATH</td>
 </tr>
 <tr>
-<td><code>--h</code>, <code>--help</code></td>
+<td><code>-h</code>, <code>--help</code></td>
 <td>Show installer help</td>
 </tr>
 </tbody>
 </table>
-<p>Requires: <code>git</code>, <code>node</code>, <code>pkg-config</code>, LLVM 20+ (<code>clang</code>, <code>llc</code>, <code>opt</code>) and libcurl headers. The installer sets these up for you with <code>-y</code>. Windows is not supported yet (use WSL).</p>
+<h3 id="environment-variables">Environment variables<a class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ZEN_REF</code></td>
+<td>Same as <code>--tag</code></td>
+</tr>
+<tr>
+<td><code>ZEN_PREFIX</code></td>
+<td>Same as <code>--prefix</code></td>
+</tr>
+<tr>
+<td><code>ZEN_REPO</code></td>
+<td>Override the git repository URL</td>
+</tr>
+<tr>
+<td><code>ZEN_INSTALL_DIR</code></td>
+<td>Override the install directory (default: <code>~/.zen</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h3>
+<p><code>git</code>, <code>node</code>, <code>pkg-config</code>, LLVM 20+ (<code>clang</code>, <code>llc</code>, <code>opt</code>) and libcurl headers. With <code>-y</code> the installer sets these up for you. Native Windows is not supported yet (use WSL).</p>
+<hr />
 <h2 id="issues">Issues<a class="headerlink" href="#issues" title="Permanent link">&para;</a></h2>
 <p>Found a bug or have an idea? <a href="https://github.com/Jishith-dev/Zen/issues">Open a GitHub issue</a>.</p>
 <hr />
@@ -19044,7 +19221,7 @@ Output: Native binary</p>
 <hr />
 <h3 id="k-installation">K. Installation<a class="headerlink" href="#k-installation" title="Permanent link">&para;</a></h3>
 <h4 id="linux-macos-and-android-termux">Linux, macOS, and Android (Termux)<a class="headerlink" href="#linux-macos-and-android-termux" title="Permanent link">&para;</a></h4>
-<div class="language-bash highlight"><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/Jishith-dev/Zen/main/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash<span class="w"> </span>-s<span class="w"> </span>--<span class="w"> </span>--branch<span class="w"> </span>dev<span class="w"> </span>-y
+<div class="language-bash highlight"><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/Jishith-dev/Zen/main/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash<span class="w"> </span>-s<span class="w"> </span>--<span class="w"> </span>-y
 </code></pre></div>
 <h4 id="windows_1">Windows<a class="headerlink" href="#windows_1" title="Permanent link">&para;</a></h4>
 <p>Native Windows is not supported yet. Use WSL and run the command above.</p>
